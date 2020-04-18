@@ -1,0 +1,9 @@
+{
+    "DEFAULT": {
+        "APPNAME": "Nox"
+    },
+    "TEST": {
+        "APPNAME": "Nox"
+    }
+
+}
