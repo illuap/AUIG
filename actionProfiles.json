@@ -1,0 +1,8 @@
+{
+    "test":{
+        "actionType":"FIND_AND_CLICK",
+        "data":{
+            "img1": "./images/test/1.png"
+        }
+    }
+}

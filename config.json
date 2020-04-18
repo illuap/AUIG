@@ -1,9 +1,11 @@
 {
     "DEFAULT": {
-        "APPNAME": "Nox"
+        "APPNAME": "Nox",
+        "FOCUS_ON_EVERY_ACTION": 1
     },
     "TEST": {
-        "APPNAME": "Nox"
+        "APPNAME": "NoxPlayer",
+        "FOCUS_ON_EVERY_ACTION": 1
     }
 
 }

@@ -4,7 +4,7 @@ import json
 # config = configparser.ConfigParser()
 # config.read('config.json')
 
-ENVIRONMENT = "DEFAULT"
+ENVIRONMENT = "TEST"
 
 if('config' not in vars()): 
     with open('config.json', 'r') as f:
