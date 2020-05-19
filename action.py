@@ -6,6 +6,8 @@ import numpy as np
 import cv2
 import pyautogui
 import random
+from configmanager import config
+from enums.actionStatusTypes import actionStatusTypes
 
 class action(ABC):
 
@@ -52,15 +54,87 @@ class findAndClickAct(action):
         pass
 
     def run(self):
+        print("Running " + self._actionProfile.uniqueName)
+
+        
+
         mainImg = self.screenGrabber.getScreenShotRGB()
         gray = cv2.cvtColor(mainImg, cv2.COLOR_BGR2GRAY)
 
         result = cv2.matchTemplate(gray, self.img1, cv2.TM_CCOEFF_NORMED)  
         
-        found_pos = np.unravel_index(result.argmax(),result.shape)
-        print (found_pos)
+        #JUST TAKES THE FIRST POINT FOUND
+        #found_pos = np.unravel_index(result.argmax(),result.shape)
 
-        clickAtPos(self.screenGrabber, found_pos[1], found_pos[0])
+        # Specify a threshold 
+        threshold = 0.8
+        # Store the coordinates of matched area in a numpy array 
+        loc = np.where( result >= threshold)  
+        if(config["DEBUG_IMAGES"] == 1):
+            print(loc)
+            # Draw a rectangle around the matched region. 
+            for pt in zip(*loc[::-1]): 
+                cv2.rectangle(gray, pt, (pt[0] + 20, pt[1] + 20), 255, 1) 
+            
+            # Show the final image with the matched area. 
+            cv2.imshow('Detected',gray) 
+            cv2.waitKey(0)
+
+
+        if(len(loc[0]) > 0):
+            clickAtPos(self.screenGrabber, loc[1][0], loc[0][0])
+            return actionStatusTypes.ACTION_DONE
+        else:
+            return actionStatusTypes.NO_ACTION
+
+class checkAndClickAct(action):
+    _actionProfile = None
+    _screenGrabber = None
+
+    img1 = None
+    # 
+    def __init__(self, SG, aP):
+        self._actionProfile = aP
+        self.img1 = GetImage(self._actionProfile.data["img1"])
+        self.x1 = self._actionProfile.data["x1"]
+        self.y1 = self._actionProfile.data["y1"]
+        self.screenGrabber = SG
+
+    def getView(self):
+        pass
+
+    def run(self):
+        print("Running " + self._actionProfile.uniqueName)
+        mainImg = self.screenGrabber.getScreenShotRGB()
+        gray = cv2.cvtColor(mainImg, cv2.COLOR_BGR2GRAY)
+
+        result = cv2.matchTemplate(gray, self.img1, cv2.TM_CCOEFF_NORMED)  
+        
+        #JUST TAKES THE FIRST POINT FOUND
+        #found_pos = np.unravel_index(result.argmax(),result.shape)
+
+        # Specify a threshold 
+        threshold = 0.8
+        # Store the coordinates of matched area in a numpy array 
+        loc = np.where( result >= threshold)  
+        if(config["DEBUG_IMAGES"] == 1):
+            print(loc)
+            # Draw a rectangle around the matched region. 
+            for pt in zip(*loc[::-1]): 
+                cv2.rectangle(gray, pt, (pt[0] + 20, pt[1] + 20), 255, 1) 
+            
+            # Show the final image with the matched area. 
+            cv2.imshow('Detected',gray) 
+            cv2.waitKey(0)
+
+
+        if(len(loc[0]) > 0):
+            print(self.x1)
+            clickAtPos(self.screenGrabber, self.y1, self.x1)
+            return actionStatusTypes.ACTION_DONE
+        else:
+            return actionStatusTypes.NO_ACTION
+
 
 
 

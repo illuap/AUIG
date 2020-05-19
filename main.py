@@ -3,19 +3,24 @@ from screengrabber import ScreenGrabberWin32
 from action import *
 
 from enums.actionTypes import actionTypes
+from enums.actionStatusTypes import actionStatusTypes
 from actionProfile import *
+from actionNetwork import *
+
+import eelMain
 
 print(config['APPNAME'])
 
-aP = actionProfile("test")
+#aP = actionProfile("test")
+#dog = actionProfile("insert", actionTypes.CHECK_AND_CLICK.name, {actionStatusTypes.ACTION_DONE.name: "uniqueNameHere"}, {})
+#dog.save()
 
-SG = ScreenGrabberWin32(config["APPNAME"])
-SG.getScreenShot()
+#SG = ScreenGrabberWin32(config["APPNAME"])
+#SG.getScreenShot()
 
-temp = findAndClickAct(SG, aP)
-temp.run()
 
-#SGManager = ScreenGrabberWin32(config["APPNAME"])
-#SGManager.getScreenShot()
+#an = actionNetwork(SG)
+
+
 
 

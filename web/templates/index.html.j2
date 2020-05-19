@@ -1,0 +1,36 @@
+{% extends 'base.html.j2' %} 
+{% block title %}Hello, World!{% endblock %}
+{% block head_scripts %}       
+<script type="text/javascript">
+    function StartActions(){
+    eel.start_actions();
+  }
+
+  async function UpdateInfo(){
+    results = await eel.getStartingNodeName()();
+    $(".startNode").text(results);
+  }
+
+  UpdateInfo();
+
+</script>
+<script src="/js/CheckAndClickP5.js"></script>
+{% endblock %}
+
+
+{% block content %}
+          <div class="alert-messages"></div>
+  
+          <h1> Welcome</h1>
+          <p>The initial node is <span class="startNode" style="font-weight: bold;"></span></p>
+          <button onClick="StartActions()" class="btn btn-primary btn-block">Start</button>
+
+          
+
+<div id="screenSection">
+  <!-- TODO: -->
+  <!-- [] Grab image -->
+  <!-- [X] Draw Rectangle on image -->
+  <!-- [] select point -->
+</div>
+{% endblock %}

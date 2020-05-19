@@ -1,6 +1,6 @@
 from abc import ABC
 from configmanager import config
-import win32gui
+import win32gui, win32com.client
 import win32ui
 import win32con
 
@@ -35,18 +35,23 @@ class ScreenGrabberWin32(ScreenGrabber):
 
         # TODO: Do a check for duplicate names/ windows with the same name
         try:
+            print("- Trying to find window name: " + winName )
             # this finds a window with a SIMILAR or EXACT name
             self.hwnd = win32gui.FindWindow(None, winName)
-            print(win32gui.IsWindowVisible(self.hwnd))
+            print("- Is window visible: " + str(win32gui.IsWindowVisible(self.hwnd)))
             
-            win32gui.SetForegroundWindow(self.hwnd)
+            
 
             if(self.hwnd == 0):
                 print("[ERROR] Could not find " + winName)
                 exit()
+            shell = win32com.client.Dispatch("WScript.Shell")
+            shell.SendKeys('%')
+            win32gui.SetForegroundWindow(self.hwnd)
 
         except Exception as ex:
             print('[ERROR] calling win32gui.FindWindow ' + str(ex))
+            print(' - TRY RUNNING IN ADMIN')
             raise
     
     def getScreenShot(self):
@@ -58,9 +63,9 @@ class ScreenGrabberWin32(ScreenGrabber):
         rect = win32gui.GetWindowRect(self.hwnd) # Maybe take this out to optimize performance at the cost of not being able to resize while the app is running
         self.x = rect[0]
         self.y = rect[1]
-        self.w = math.floor((rect[2] - self.x ) *2.3)
-        self.h = math.floor((rect[3] - self.y ) *2.3)
-        print(rect)
+        self.w = (rect[2] - self.x)
+        self.h = (rect[3] - self.y)
+        #print(rect)
 
 
         wDC = win32gui.GetWindowDC(self.hwnd)

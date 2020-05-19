@@ -1,11 +1,14 @@
 {
     "DEFAULT": {
         "APPNAME": "Nox",
-        "FOCUS_ON_EVERY_ACTION": 1
+        "FOCUS_ON_EVERY_ACTION": 1,
+        "DEBUG_IMAGES": 0
     },
     "TEST": {
         "APPNAME": "NoxPlayer",
-        "FOCUS_ON_EVERY_ACTION": 1
+        "FOCUS_ON_EVERY_ACTION": 1,
+        "DEBUG_IMAGES": 0,
+        "PROFILE_JSON_NAME": "actionProfiles"
     }
 
 }
