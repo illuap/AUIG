@@ -1,11 +1,9 @@
-
-
 from enums.actionTypes import actionTypes
 import json
 
 actionProfileFileName = 'actionProfiles.json'
-
-if('ActionProfiles' not in vars()): 
+# make singleton?
+if 'ActionProfiles' not in vars():
     with open(actionProfileFileName, 'r') as f:
         ActionProfiles = json.load(f)
 
@@ -23,15 +21,15 @@ class actionProfile:
     # new profile
     def __init__(self, uniqueName, actionType = None, edges = None, data = None, delays = None):
         # LOAD EXISTING
-        #TODO do more error checking here?
-        if(actionType == None):
+        # TODO do more error checking here?
+        if actionType == None:
             self.uniqueName = uniqueName
             print("==LOADING " + uniqueName + "===")
             print(ActionProfiles[uniqueName])
 
             self.actionType = actionTypes[ActionProfiles[uniqueName]["actionType"]]
             self.data = ActionProfiles[uniqueName]["data"]
- 
+
             print("===Data===")
             print(self.data)
 
@@ -62,7 +60,7 @@ class actionProfile:
         }
 
         # GET JSON AND SAVE
-        if(self.uniqueName in ActionProfiles):
+        if self.uniqueName in ActionProfiles:
             print("[ERROR] " + self.uniqueName + " ALREADY EXISTS")
             return
 
@@ -71,13 +69,23 @@ class actionProfile:
         with open(actionProfileFileName, 'w') as f:
             json.dump(ActionProfiles, f, indent=4)
 
+    def getJsonData(self):
+        json_data = { 
+            "actionType": self.actionType,
+            "edges": self.edges,
+            "data": self.data,
+            "delays": self.delays
+        }
+
+        return json_data
+
     def SetDefaultDelaysIfEmpty(self):
         if(ActionProfiles == None or self.uniqueName not in ActionProfiles.keys()):
             self.delays = {}
             self.delays["START_DELAY"] = 0
             self.delays["POST_DELAY"] = 0
             return True
-        if(DELAY_KEY not in ActionProfiles[self.uniqueName].keys()):
+        if DELAY_KEY not in ActionProfiles[self.uniqueName].keys():
             self.delays = {}
             self.delays["START_DELAY"] = 0
             self.delays["POST_DELAY"] = 0

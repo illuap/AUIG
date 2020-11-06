@@ -1,0 +1,92 @@
+{% extends 'base.html.j2' %} 
+{% block title %}Hello, World!{% endblock %}
+
+{% block head_scripts %}       
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+    <link rel="stylesheet" href="/css/nodetree.css">
+        <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+    </style>
+
+
+
+<script type="text/javascript">
+
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+
+{% endblock %} 
+
+
+{% block content %}
+<h1> Node Visualizer </h1>
+
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+    async function getN(){
+        let n = await eel.getNodesForGraph()();
+        console.log(n);
+        return n;
+    }
+    async function getE(){
+        let e = await eel.getEdgesForGraph()();
+        console.log(e);
+        return e;
+    }
+    async function getNetwork(){
+          let n2 = await getN();
+          console.log(n2);
+          var e2 = await getE();
+          // create an array with nodes
+          var nodes = new vis.DataSet(
+              n2
+          );
+          // create an array with edges
+          var edges = new vis.DataSet(
+              e2
+          );
+          // create a network
+          var container = document.getElementById('mynetwork');
+
+          // provide the data in the vis format
+          var data = {
+              nodes: nodes,
+              edges: edges
+          };
+          var options = {
+              autoResize: true,
+              configure: {
+                  enabled: true,
+                  filter: 'nodes,edges',
+                  container: undefined,
+                  showButton: true
+              },
+              nodes:{
+                  mass: 10,
+              },
+              edges:{
+                  "font": {
+                      "size": 8
+                  },        
+              }
+          };
+
+          // initialize your network!
+          return new vis.Network(container, data, options);
+    }
+    $(function() {
+        var network = getNetwork();
+    });
+
+</script>
+
+{% endblock %}

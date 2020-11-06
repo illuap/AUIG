@@ -7,7 +7,17 @@ from enums.actionStatusTypes import actionStatusTypes
 from actionProfile import *
 from actionNetwork import *
 
+
+import actionProfileToGraph
+
+print(actionProfileToGraph.getAllNodes())
+print(actionProfileToGraph.getAllEdges())
+
 import eelMain
+
+## RECURSIVE LOOP BECAUSE I USED A TREE FOR A FSM lul
+# from treantActionProfileParser import *
+# print(getTreantNodeStructureJSON(actionProfile("open_missions")))
 
 print(config['APPNAME'])
 

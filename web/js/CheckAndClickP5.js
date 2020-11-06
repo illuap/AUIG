@@ -6,15 +6,32 @@ let y2 = 0;
 let rec;
 let dot;
 let _img;
+let _img2 = null;
 let isDrag = false;
-function setup() {
-  let myCanvas = createCanvas(600, 400);
+
+let isSSTaken = document.getElementById('isSSTaken').value;
+
+
+
+function setup(x=600,y=400) {
+  let myCanvas = createCanvas(x, y);
   myCanvas.parent('screenSection');
-  _img = loadImage('/images-screens/template1.png', drawCat);
-  
+  myCanvas.mousePressed(mousePressed1);
+  myCanvas.mouseClicked(mouseClicked1);
+  loadDefault();
 }
 function draw() {
-  image(_img, 0, 0);
+  isSSTaken = document.getElementById('isSSTaken').value;
+  if( isSSTaken == "0"){ // TODO optimize this loading? but hey it works...
+    image(_img, 0, 0);
+  }
+  else{
+    if(_img2 == null)
+      loadSS()
+    image(_img2, 0, 0);
+  }
+
+
   if(rec){
     rec.show();
   }
@@ -22,29 +39,41 @@ function draw() {
     dot.show();
   }
 } 
-function mousePressed(){
+function mousePressed1(){
   
   x1 = mouseX;
   y1 = mouseY;
 }
 function mouseDragged() {
-  x2 = mouseX - x1;
-  y2 = mouseY - y1;
-  rec = new imageSection(x1,y1,x2,y2);
+  //TODO inconsistent issue when dragging things outside.
+
+  if(mouseX >= 0 && mouseY >= 0){
+    x2 = mouseX - x1;
+    y2 = mouseY - y1;
+    rec = new imageSection(x1,y1,x2,y2);
+  }
   isDrag = true;
+
 }
-function mouseClicked(){
+function mouseClicked1(){
   if(!isDrag){
     dot = new clickDot(mouseX,mouseY);
   }else{
     isDrag = false;
   }
-  
+}
+
+function loadDefault(){
+  _img = loadImage('/images-screens/TEST.png', drawCat);
+}
+function loadSS(){
+  _img2 = loadImage('/images-screens/TEST.png',drawCat);
 }
 
 function drawCat(img) {
   image(img, 0, 0);
 }
+
 
 class imageSection{
   constructor(_x1 = 0, _y1 = 0, _x2 = 0, _y2 = 0) {

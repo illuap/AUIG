@@ -91,12 +91,32 @@ def start_actions():
 def getStartingNodeName():
     # convert dictionary to iterator and get the first value
     return next(iter(ActionProfiles.keys()))
-0
+
 ## LIST OF IMAGES
 
 #SET
 ## IMAGE
 ## LINKING
+import actionProfileToGraph
+
+@eel.expose
+def getNodesForGraph():
+    return actionProfileToGraph.getAllNodes()
+
+@eel.expose
+def getEdgesForGraph():
+    return actionProfileToGraph.getAllEdges()
+
+
+
+## safe and get image from progrm
+@eel.expose
+def saveSS():
+    print("TRYING TO SAVE SS")
+    img = SG.getScreenShot()
+    url = SG.saveImage(img)
+    print(url)
+    return [url,SG.w,SG.h]
 
 
 eel.start('templates/index.html.j2', size=(900, 1000), jinja_templates='templates')

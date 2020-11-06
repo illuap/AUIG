@@ -114,3 +114,13 @@ class ScreenGrabberWin32(ScreenGrabber):
         img.shape = ( bmpinfo['bmHeight'],bmpinfo['bmWidth'],4) # if possible figure out how to ignore alpha channel in conversion
         return img
     
+
+    #TODO idk where this goes...., this doesnt need to be a member function....
+    def saveImage(self, img, url = './web/images-screens/'):
+        fileFormat = ".png"
+        fileName = "TEST"
+
+        image = Image.fromarray(img)
+        image.save(""+url+fileName+fileFormat)
+        #TODO FIX THE COLOURS
+        return (""+url+fileName+fileFormat)
