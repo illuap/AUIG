@@ -1,6 +1,9 @@
 import json
 
 from .action import action, actionProfile
+import jsonpickle
+
+
 
 class actionProfileJSONloader(object):
     """ Takes the actionProfiles in Json and load it into python objects
@@ -9,39 +12,34 @@ class actionProfileJSONloader(object):
     """
 
     actionProfileFileName = ""
-    actionProfilesJSON = None
 
     actionProfilesDic = dict()
 
     def __init__(self, actionProfileFileName = "./data/actionProfiles.json"):
         self.actionProfileFileName = actionProfileFileName
         # Load json
-        with open(self.actionProfileFileName, 'r') as f:
-            self.actionProfilesJSON = json.load(f)
-
-    def __loadAction(self,profileName):
-        """ Given the json of a specific action load it (private)"""
-        return action(name = profileName, 
-                        actionType = self.actionProfilesJSON[profileName]['actionType'],
-                        edges = self.actionProfilesJSON[profileName]['edges'],
-                        coordinates = None,
-                        images = None)
-
-    def __loadActionProfile(self,profileName,action):
-        return actionProfile(name = profileName, 
-                                action = action, 
-                                preDelay = 0, 
-                                postDelay = 0)
+        self.loadActionProfileToDic()
 
 
     def loadActionProfileToDic(self):
         """ Givent the json list of actionProfiles load the profile + the action """
-        for profile in self.actionProfilesJSON:
-            action = self.__loadAction(profile)
-            actionProfile = self.__loadActionProfile(profile,action)
+        with open(self.actionProfileFileName, 'r') as f:
+            self.actionProfilesDic = jsonpickle.decode(f.read())
 
-            self.actionProfilesDic[profile] = actionProfile
-        #Grab into
+    def writeActionProfileDic(self):
+        with open(self.actionProfileFileName, 'w') as f:
+            f.write(jsonpickle.encode(self.actionProfilesDic, unpicklable=False))
 
-        #load the action
 
+    def addActionProfile(self, APModel):
+        self.actionProfilesDic[APModel.name] = APModel
+        self.writeActionProfileDic()
+
+    def deleteActionProfile(self, APName):
+        self.actionProfilesDic.pop(APName, None)
+        self.writeActionProfileDic()
+
+    #TODO test
+    def editActionProfile(self, APModel):
+        self.actionProfilesDic[actionProfile.name] = APModel
+        self.writeActionProfileDic()

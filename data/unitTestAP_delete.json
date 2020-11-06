@@ -1,0 +1,1 @@
+{"dailies": {"name": "dailies", "actionType": "findnclic", "edges": {"dog": "edge1"}, "images": ["sdfg/sdfgsdfg/dfg.png"], "coordinates": [[10, 200], [300, 400]], "pre_delay": 10, "post_delay": 20}}
