@@ -39,7 +39,8 @@ class actionProfileJSONloader(object):
         self.actionProfilesDic.pop(APName, None)
         self.writeActionProfileDic()
 
-    #TODO test
     def editActionProfile(self, APModel):
-        self.actionProfilesDic[actionProfile.name] = APModel
+        if(APModel['name'] not in self.actionProfilesDic.keys()):
+            raise Exception("Don't modify an Action Profile's name.")
+        self.actionProfilesDic[APModel["name"]] = APModel
         self.writeActionProfileDic()

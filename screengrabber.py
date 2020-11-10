@@ -77,7 +77,7 @@ class ScreenGrabberWin32(ScreenGrabber):
         cDC.BitBlt((0,0),(self.w, self.h) , dcObj, (0,0), win32con.SRCCOPY)
         dataBitMap.SaveBitmapFile(cDC, "wut.bmp")
 
-        img = self.convertWinBitMapToRGBA(dataBitMap)
+        img = self.__convertWinBitMapToRGBA(dataBitMap)
 
         # Free Resources
         dcObj.DeleteDC()
@@ -97,7 +97,7 @@ class ScreenGrabberWin32(ScreenGrabber):
 
 
 
-    def convertWinBitMapToPIL(self, dataBitMap):
+    def __convertWinBitMapToPIL(self, dataBitMap):
         bmpinfo = dataBitMap.GetInfo()
         bmpstr = dataBitMap.GetBitmapBits(True)
         im = Image.frombuffer(
@@ -107,7 +107,7 @@ class ScreenGrabberWin32(ScreenGrabber):
         
         return im
 
-    def convertWinBitMapToRGBA(self, dataBitMap):
+    def __convertWinBitMapToRGBA(self, dataBitMap):
         bmpinfo = dataBitMap.GetInfo()
         signedIntsArray = dataBitMap.GetBitmapBits(True)
         img = np.fromstring(signedIntsArray, dtype='uint8')

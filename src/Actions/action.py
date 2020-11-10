@@ -18,10 +18,7 @@ class action():
     def execute(self):
         """ Depending on the action run a specific function. """
 
-        if(self._actionType == "FIND_AND_CLICK"):
-            self.action_FIND_AND_CLICK()
-        elif(self._actionType == "CHECK_AND_CLICK"):
-            self.action_CHECK_AND_CLICK()
+
             
     
     def action_FIND_AND_CLICK(self):

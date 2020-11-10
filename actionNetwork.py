@@ -10,7 +10,6 @@ class actionNetwork:
 
 
     actionDic = {}
-    
 
     def __init__(self, SG):
         allActions = ActionProfiles.keys()
