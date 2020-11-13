@@ -16,3 +16,17 @@ class ImageGrabber_Tests_Manual(unittest.TestCase):
 
     #     #cv2.waitKey(0)
     #     return 
+
+
+
+class ImageGrabber_Tests(unittest.TestCase):
+    def test_grabImageFromFile_existing(self):
+        ig = ImageGrabber()
+
+        imageList = ["images/test/test_image_1.jpg",
+                        "images/test/test_image_2.png",
+                        "images/test/find_image_1.png"]
+
+        for path in imageList:
+            print("Trying to load: " + path)
+            self.assertIsNotNone(ig.grabImageFromFile(path))
