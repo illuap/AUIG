@@ -4,28 +4,24 @@ import keyboard
 import time
 
 from src.Actions.ActionProfileModel import ActionProfileModel
-from src.Actions.actionProfileJSONloader import actionProfileJSONloader
+from src.Actions.ActionProfileAccess import ActionProfileAccess
 from src.Actions.Actions import Actions
 
-class actionProfileManager():
+class ActionProfileManager():
 
-    actionProfileJSONloader = None
+    actionProfileAccess = None
     def __init__(self):
-        self.actionProfileJSONloader = actionProfileJSONloader()
-        self.actionProfileJSONloader.loadActionProfileToDic() # Refresh the dictionary just in case.
+        self.actionProfileAccess = ActionProfileAccess()
 
-    # TEMP
+
+    def setJsonFile(self, filePath):
+        self.actionProfileAccess.setJsonFile(filePath)
+    
     def getStartingAction(self):
-        # Default to the first one....
-        return jsonpickle.decode(next(iter(self.actionProfileJSONloader.actionProfilesDic)))
-    # TEMP
-    def getStartingActionName(self):
-        # Default to the first one....
-        return next(iter(self.actionProfileJSONloader.actionProfilesDic))['name']
+        return self.actionProfileAccess.getStartingAction()
 
-        
-    def getActionFromName(self, name):
-        return jsonpickle.decode(self.actionProfileJSONloader.actionProfilesDic[name])
+    def getActionFromName(self, actionName):
+        return self.actionProfileAccess.getActionFromName(actionName)
 
     def executeActionProfile(self, action: ActionProfileModel):
         """Takes an action profile model and decides how to perform given action

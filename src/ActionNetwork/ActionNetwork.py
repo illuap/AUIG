@@ -1,18 +1,16 @@
 import keyboard
 import time
 
-from src.Actions.actionProfileManager import actionProfileManager
+from src.Actions.ActionProfileManager import ActionProfileManager
 from src.Actions.ActionProfileModel import ActionProfileModel
 
 class ActionNetwork(object):
 
 
-    screenGrabber = None
     APManager = None
 
 
-    def __init__(self,screenGrabber, actionProfileManager: actionProfileManager):
-        self.screenGrabber = screenGrabber
+    def __init__(self, actionProfileManager: ActionProfileManager):
         self.APManager = actionProfileManager
         # Need screen grabbber
         # Current state
@@ -23,12 +21,12 @@ class ActionNetwork(object):
     def getStartingNode(self):
         return self.APManager.getStartingAction()
 
-    def traverseNetwork(self, startingAction: ActionProfileModel):
+    def traverseNetwork(self, startingAction: ActionProfileModel = None):
+        if(not startingAction):
+            startingAction = self.APManager.getStartingAction()
         # TODO
-        results = startingAction.name
-
         while(not keyboard.is_pressed('`') and results != ""):
-            nextActionName = self.APManager.executeAction(action = startingAction)
+            nextActionName = self.APManager.executeActionProfile(action = startingAction)
             if(results != ""):
                 results = self.APManager.getActionFromName(name = nextActionName) # empty string = end
 

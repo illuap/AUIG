@@ -77,3 +77,5 @@ class ImageRecognition():
         cv2.rectangle(newAppImg, (int(MPx), int(MPy)),(int(MPx+tcols), int(MPy+trows)),(0,0,255),2)
 
         return newAppImg
+
+        

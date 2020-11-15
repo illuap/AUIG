@@ -53,6 +53,14 @@ class ScreenGrabberWin32(ScreenGrabber):
             print('[ERROR] calling win32gui.FindWindow ' + str(ex))
             print(' - TRY RUNNING IN ADMIN')
             raise
+        
+    def getWindowPosition(self):
+        rect = win32gui.GetWindowRect(self.hwnd) # Maybe take this out to optimize performance at the cost of not being able to resize while the app is running
+        self.x = rect[0]
+        self.y = rect[1]
+        self.w = (rect[2] - self.x)
+        self.h = (rect[3] - self.y)
+        return (x,y)
     
     def getScreenShot(self):
         # https://stackoverflow.com/questions/3586046/fastest-way-to-take-a-screenshot-with-python-on-windows
