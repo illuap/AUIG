@@ -23,6 +23,8 @@ class ActionProfileManager():
     def getActionFromName(self, actionName):
         return self.actionProfileAccess.getActionFromName(actionName)
 
+
+    # TODO: kind of odd using the above functions and these ones from the same class........
     def executeActionProfile(self, action: ActionProfileModel):
         """Takes an action profile model and decides how to perform given action
         

@@ -52,7 +52,6 @@ class ImageRecognition():
         results = self._findSubImage_try_1_bestmatch_pos(appImg, findImg)
 
         if results == None:
-            print("Failed to find " + imagePathToFind)
             return None
 
         return results

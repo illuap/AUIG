@@ -1,7 +1,8 @@
-from .Types import ActionStatusType,  ActionType
+from src.Actions.Types.ActionStatusType import ActionStatusType
+from src.Actions.Types.ActionType import ActionType
 from src.Actions.ActionProfileModel import ActionProfileModel
 from src.Clicker import Clicker
-from src.ImageRecognition import ImageRecognition
+from src.ImageRecognition.ImageRecognition import ImageRecognition
 
 class Actions():
 
@@ -9,7 +10,7 @@ class Actions():
     def FIND_AND_CLICK(action: ActionProfileModel):
         """ Find an image and click the image """
         ir = ImageRecognition()
-        pos = ir.findSubImagePosInApllication(action.images[0])
+        pos = ir.findSubImagePosInApplication(action.images[0])
 
         # Code to execute and decide what the next status should be
         if(pos != None):
@@ -23,7 +24,7 @@ class Actions():
     def CHECK_AND_CLICK(action: ActionProfileModel):
         """ Find an image and click someone else """
         ir = ImageRecognition()
-        pos = ir.findSubImagePosInApllication(action.images[0])
+        pos = ir.findSubImagePosInApplication(action.images[0])
 
         # Code to execute and decide what the next status should be
         if(pos != None):
