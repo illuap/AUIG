@@ -1,27 +1,21 @@
+import time
+
 import eel
+from src.ActionNetwork.ActionNetwork import ActionNetwork
+from src.Actions.ActionProfileManager import ActionProfileManager
 
-class AUIRG_WebApp():
-    def __init__(self):
-        print("Webapp!")
-        #TODO start up all the managers and such?? 
-        # this creates a singleton interms of how everything will be managed..
-        # but this should be fine for our specific use case because it shouldn't
-        # scale that large.....????
-
-    def initalize(self):
-        eel.init('web')
-        eel.start('hello.html', size=(300, 200))  # Start
-
-        
-
-
-@eel.expose                         # Expose this function to Javascript
+@eel.expose  # Expose this function to Javascript
 def say_hello_py(x):
     print('Hello from %s' % x)
-say_hello_py('Python World!')
-#eel.say_hello_js('Python World!')   # Call a Javascript function
 
 
-
-temp = AUIRG_WebApp()
-temp.initalize()
+@eel.expose
+def test_alerts():
+    time.sleep(1)
+    eel.alert_client("alert 0")
+    print('alert 1')
+    time.sleep(1)
+    eel.alert_client("alert 1")
+    print('alert 2')
+    return
+# eel.say_hello_js('Python World!')   # Call a Javascript function

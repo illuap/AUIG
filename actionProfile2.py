@@ -19,6 +19,7 @@ class ActionProfileV2:
     # new profile
     def __init__(self, uniquename, action=None, delays=None):
         # TODO implement this
+        return
 
     def SetAction(self, new_action):
         # TODO implement this

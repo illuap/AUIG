@@ -1,5 +1,6 @@
 import keyboard
 import time
+import json
 
 from src.Actions.ActionProfileManager import ActionProfileManager
 from src.Actions.ActionProfileModel import ActionProfileModel
@@ -31,3 +32,7 @@ class ActionNetwork(object):
                 results = self.APManager.getActionFromName(name = nextActionName) # empty string = end
 
         return
+
+    def getActionsInNetwork(self):
+        return json.dumps(self.APManager.actionProfileAccess.actionProfileJSONloader.actionProfilesDic, indent=4)
+        #self.APManager
