@@ -8,6 +8,11 @@ import math
 from PIL import Image
 import numpy as np
 
+
+# This is to handle the lowlevel stuff.
+
+
+
 # TODO: future support for linux and maybe macs
 class ScreenGrabber(ABC):
 
@@ -37,23 +42,31 @@ class ScreenGrabberWin32(ScreenGrabber):
         try:
             print("- Trying to find window name: " + winName )
             # this finds a window with a SIMILAR or EXACT name
-            self.hwnd = win32gui.FindWindow(None, winName)
-            print("- Is window visible: " + str(win32gui.IsWindowVisible(self.hwnd)))
+            self.hwnd = self.findWindowHWD(winName)
+            print("- Is window visible: " + str(self.isWindowVisible()))
             
-            
-
             if(self.hwnd == 0):
                 print("[ERROR] Could not find " + winName)
                 exit()
-            shell = win32com.client.Dispatch("WScript.Shell")
-            shell.SendKeys('%')
-            win32gui.SetForegroundWindow(self.hwnd)
+            #self.setWindowToForeground()    
 
         except Exception as ex:
             print('[ERROR] calling win32gui.FindWindow ' + str(ex))
             print(' - TRY RUNNING IN ADMIN')
             raise
-        
+
+    def findWindowHWD(self, windowName):
+        return win32gui.FindWindow(None, windowName)
+
+    def isWindowVisible(self):
+        return win32gui.IsWindowVisible(self.hwnd)
+    
+    def setWindowToForeground(self):
+        shell = win32com.client.Dispatch("WScript.Shell")
+        shell.SendKeys('%')
+        win32gui.ShowWindow(self.hwnd, 9) # 9 is restore.
+        win32gui.SetForegroundWindow(self.hwnd)
+
     def getWindowPosition(self):
         rect = win32gui.GetWindowRect(self.hwnd) # Maybe take this out to optimize performance at the cost of not being able to resize while the app is running
         self.x = rect[0]

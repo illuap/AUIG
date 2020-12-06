@@ -26,6 +26,7 @@ class ActionNetwork(object):
         if(not startingAction):
             startingAction = self.APManager.getStartingAction()
         # TODO
+        results = "starting"
         while(not keyboard.is_pressed('`') and results != ""):
             nextActionName = self.APManager.executeActionProfile(action = startingAction)
             if(results != ""):

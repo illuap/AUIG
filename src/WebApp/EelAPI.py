@@ -1,6 +1,7 @@
 import eel
 
 from src.WebApp.AUIG_WebApp import  AUIRG_WebApp
+from src.Tools.AppCheckerTool import AppCheckerTool
 
 #technically abandoned?
 
@@ -19,4 +20,9 @@ def show_actions_in_action_network():
     info = app.aNetwork.getActionsInNetwork()
 
     eel.popup_client(info)
+    return
+
+@eel.expose
+def focus_nox_window():
+    AppCheckerTool.FocusNox()
     return
