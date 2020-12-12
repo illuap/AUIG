@@ -1,7 +1,7 @@
 from src.Actions.Types.ActionStatusType import ActionStatusType
 from src.Actions.Types.ActionType import ActionType
 from src.Actions.ActionProfileModel import ActionProfileModel
-from src.Clicker import Clicker
+from src.Clicker.Clicker import Clicker
 from src.ImageRecognition.ImageRecognition import ImageRecognition
 
 class Actions():

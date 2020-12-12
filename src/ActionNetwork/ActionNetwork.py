@@ -30,7 +30,7 @@ class ActionNetwork(object):
         while(not keyboard.is_pressed('`') and results != ""):
             nextActionName = self.APManager.executeActionProfile(action = startingAction)
             if(results != ""):
-                results = self.APManager.getActionFromName(name = nextActionName) # empty string = end
+                results = self.APManager.getActionFromName(actionName = nextActionName) # empty string = end
 
         return
 

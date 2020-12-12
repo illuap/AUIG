@@ -30,6 +30,6 @@ class Clicker():
         
     @staticmethod
     def click_at_in_app(pos):
-        sg = ScreenGrabberWin32() # TODO fix this, kinda ugly to instantiate a new class
+        sg = ScreenGrabberWin32("NoxPlayer") # TODO fix this, kinda ugly to instantiate a new class
         click_at(pos, sg.getWindowPosition())
 

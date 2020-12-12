@@ -12,7 +12,6 @@ def get_(x):
 
 @eel.expose
 def show_actions_in_action_network():
-    print('hello')
     app: AUIRG_WebApp = AUIRG_WebApp()
 
     print(app)
@@ -26,3 +25,8 @@ def show_actions_in_action_network():
 def focus_nox_window():
     AppCheckerTool.FocusNox()
     return
+
+@eel.expose
+def start_action_network():
+    app: AUIRG_WebApp = AUIRG_WebApp()
+    app.aNetwork.traverseNetwork()
