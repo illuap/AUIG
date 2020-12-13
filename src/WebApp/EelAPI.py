@@ -2,6 +2,7 @@ import eel
 
 from src.WebApp.AUIG_WebApp import  AUIRG_WebApp
 from src.Tools.AppCheckerTool import AppCheckerTool
+from src.Tools.ProfileViewer import ProfileViewer
 
 #technically abandoned?
 
@@ -30,3 +31,16 @@ def focus_nox_window():
 def start_action_network():
     app: AUIRG_WebApp = AUIRG_WebApp()
     app.aNetwork.traverseNetwork()
+
+@eel.expose
+def get_all_profiles():
+    return ProfileViewer.GetAllProfiles()
+
+@eel.expose
+def set_profile(profile_name):
+    # try to find file
+    # if cant find try to append folder name
+        # set file
+        # return success
+    # else return error
+    return

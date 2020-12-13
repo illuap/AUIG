@@ -1,0 +1,41 @@
+<div class="content-block">
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <label class="input-group-text" for="actionProfileSelect">Profiles</label>
+    </div>
+    <select class="custom-select" id="actionProfileSelect">
+        <option selected value="">Choose...</option> <!-- get default one -->
+    </select>
+    </div>
+    <button type="button" id="actionProfile-SetButton" class="btn btn-primary btn-block" onclick="SetActionProfile()"> Assign Profile </button>
+</div>
+
+
+<!-- requires jquery and eel to be initialized first -->
+<script>
+
+    async function SetActionProfile(){
+        option = $('#actionProfileSelect').find(':selected');
+
+        if(option.value == ""){
+            console.log("please select a valid profile")
+            return
+        }
+
+        eel.
+
+    }
+    
+
+    async function LoadAllProfiles(){
+
+        results = await eel.get_all_profiles()()
+
+        for(var i in results){
+            $('#actionProfileSelect').append('<option value="' + results[i] +'">'+ results[i] +'</option>');
+        }
+    }
+
+    LoadAllProfiles()
+
+</script>

@@ -5,5 +5,5 @@ from .EelAPI import *
 
 
 def startApp():
-    eel.init('web')
-    eel.start('actionNetwork.html', size=(600, 500))  # Start
+    eel.init('static_web')
+    eel.start('templates/actionProfiles/actionProfilePage.html', size=(600, 500), jinja_templates='templates', disable_cache=True)  # Start
