@@ -24,6 +24,8 @@ class actionProfileJSONloader(object):
         """ Givent the json list of actionProfiles load the profile + the action """
         with open(self.actionProfileFileName, 'r') as f:
             self.actionProfilesDic = jsonpickle.decode(f.read())
+        print("Opening: ")
+        print(self.actionProfilesDic)
 
     def writeActionProfileDic(self):
         with open(self.actionProfileFileName, 'w') as f:

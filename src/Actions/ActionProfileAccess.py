@@ -13,7 +13,6 @@ class ActionProfileAccess():
     actionProfileJSONloader = None
     def __init__(self):
         self.actionProfileJSONloader = actionProfileJSONloader()
-        self.actionProfileJSONloader.loadActionProfileToDic() # Refresh the dictionary just in case.
 
     def setJsonFile(self, filePath):
         self.actionProfileJSONloader.actionProfileFileName = filePath

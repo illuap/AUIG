@@ -13,7 +13,7 @@ def get_(x):
 
 @eel.expose
 def show_actions_in_action_network():
-    app: AUIRG_WebApp = AUIRG_WebApp()
+    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
 
     print(app)
     print(type(app))
@@ -29,7 +29,7 @@ def focus_nox_window():
 
 @eel.expose
 def start_action_network():
-    app: AUIRG_WebApp = AUIRG_WebApp()
+    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
     app.aNetwork.traverseNetwork()
 
 @eel.expose
@@ -38,9 +38,12 @@ def get_all_profiles():
 
 @eel.expose
 def set_profile(profile_name):
-    # try to find file
-    # if cant find try to append folder name
-        # set file
-        # return success
+    fileDir = ProfileViewer.GetFileDirForDataFile(profile_name)
+
+    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+    app.apManager.setJsonFile(fileDir)
+
+    # TODO: success or failure notification
+    # return success
     # else return error
-    return
+    return fileDir

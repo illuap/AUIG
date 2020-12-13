@@ -17,7 +17,12 @@ class ProfileViewer_Tests(unittest.TestCase):
 
     
     def test_CheckIfProfileExistsInRoot(self):
-        self.assertTrue(ProfileViewer.CheckIfProfileExistsInRoot('./data/unitTestAP.json'))
+        self.assertFalse(ProfileViewer.CheckIfProfileExistsInRoot('unitTestAP.json'))
         
     def test_CheckIfProfileExistsInDataFolder(self):
-        self.assertTrue(ProfileViewer.CheckIfProfileExistsInDataFolder('./data/unitTestAP.json'))
+        self.assertFalse(ProfileViewer.CheckIfProfileExistsInDataFolder('DOESNOTEXITFILE.json'))
+        self.assertTrue(ProfileViewer.CheckIfProfileExistsInDataFolder('unitTestAP.json'))
+
+    def test_GetFileDirForDataFile(self):
+        results = ProfileViewer.GetFileDirForDataFile("unitTestAP.json")
+        self.assertEqual("./data/unitTestAP.json", results)

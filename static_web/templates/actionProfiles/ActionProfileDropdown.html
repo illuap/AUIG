@@ -8,6 +8,12 @@
     </select>
     </div>
     <button type="button" id="actionProfile-SetButton" class="btn btn-primary btn-block" onclick="SetActionProfile()"> Assign Profile </button>
+    <br>
+    <div class="alert-wrapper">
+    </div>
+
+
+
 </div>
 
 
@@ -15,15 +21,26 @@
 <script>
 
     async function SetActionProfile(){
-        option = $('#actionProfileSelect').find(':selected');
+        var alertObj = { type: 'Danger', alertClass: 'alert-danger', message: null};
+        var results = null;
+
+        option = $('#actionProfileSelect').find(':selected')[0];
 
         if(option.value == ""){
-            console.log("please select a valid profile")
-            return
+            console.log("please select a valid profile");
+
+            alertObj = { type: 'Danger', alertClass: 'alert-danger', message: "Please select a valid profile."};
+        }else{
+            // TODO: callback for success??
+            console.log("Starting to update the profile to: " + option.value);
+            results = await eel.set_profile(option.value)();
+            // TODO: HANDLE ANY POSSIBLE ERRORS
+            alertObj = { type: 'Success', alertClass: 'alert-success', message: "Set the action profile to: "+results};
         }
 
-        eel.
-
+        var htmlAlert = '<div class="alert '+ alertObj.alertClass +' alert-dismissible fade show" role="alert"><strong>'+alertObj.type+'</strong> '+ alertObj.message +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+        $(".alert-wrapper").prepend(htmlAlert);
+        $(".alert-wrapper .alert").first().hide().fadeIn(200).delay(2000).fadeOut(1000, function () { $(this).remove(); });
     }
     
 

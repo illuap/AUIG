@@ -1,0 +1,13 @@
+{
+  "cock": {
+    "name": "open_missions",
+    "actionType": "FIND_AND_CLICK",
+    "edges": { "ACTION_DONE": "dailies",
+                "NO_ACTION" : "dailies" },
+    "images": ["images/test/actionNetwork_test_1.png"],
+    "coordinates": [
+    ],
+    "pre_delay": 10,
+    "post_delay": 20
+  }
+}

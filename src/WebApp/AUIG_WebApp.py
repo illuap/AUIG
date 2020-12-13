@@ -5,21 +5,26 @@ from src.Actions.ActionProfileManager import ActionProfileManager
 from src.WebApp.EelAPI import *
 
 class AUIRG_WebApp(object):
+    __instance__ = None
+
     apManager: ActionProfileManager = None
     aNetwork: ActionNetwork = None
 
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super(AUIRG_WebApp, cls).__new__(
-                cls, *args, **kwargs)
-        return cls._instance
-
     def __init__(self):
-        print('')
-        self.apManager = ActionProfileManager()
-        self.aNetwork = ActionNetwork(self.apManager)
+
+        if AUIRG_WebApp.__instance__ is None:
+            AUIRG_WebApp.__instance__ = self
+            self.apManager = ActionProfileManager()
+            self.aNetwork = ActionNetwork(self.apManager)
+            print("initializing webapp for the first time!")
+        else:
+            raise Exception("you cannot create another AUIRG_WebApp (bc its a singleton use getinstance())")
+        
+    def get_instance():
+        if not AUIRG_WebApp.__instance__:
+            AUIRG_WebApp()
+        return AUIRG_WebApp.__instance__
+
 
 
         # TODO start up all the managers and such??
