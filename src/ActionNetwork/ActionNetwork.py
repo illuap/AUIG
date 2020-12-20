@@ -35,5 +35,5 @@ class ActionNetwork(object):
         return
 
     def getActionsInNetwork(self):
-        return json.dumps(self.APManager.actionProfileAccess.actionProfileJSONloader.actionProfilesDic, indent=4)
+        return json.dumps(self.APManager.actionProfileAccess.__actionProfileJSONloader.actionProfilesDic, indent=4)
         #self.APManager

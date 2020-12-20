@@ -1,0 +1,113 @@
+<div class="content-block">
+    <form id="AddActionToProfileForm">
+        <!-- title -->
+        <div class="form-group">
+            <label for="AddActionToProfileForm-title">Title</label>
+            <input type="text" class="form-control" id="AddActionToProfileForm-title" placeholder="title">
+        </div>
+        <!-- actionType (dropdown)-->
+        <div class="form-group">
+            <label for="AddActionToProfileForm-actionType">Action Type</label>
+            <select class="form-control" id="AddActionToProfileForm-actionType">
+                <option selected value="">Choose...</option> <!-- get default one -->
+                <option value="FIND_AND_CLICK">FIND_AND_CLICK</option>
+                <option value="CHECK_AND_CLICK">CHECK_AND_CLICK</option>
+                <!-- TODO: make this fetch the API rather hard coded-->
+            </select>
+        </div>   
+
+
+        <!-- edges (dropdown??) -->
+        <div class="form-group">
+            <label> Edges </label>
+            <p class="form-desc">After the node finishes executing it will result in a specific status. Depending on the status after executing it will redirect to another action to perform. Choose where each resulting statuses will redirect to. If left unfilled it will end the loop.<p>
+            <!-- TODO: Form validation, prevent duplicate statuses from being picked..-->
+            <!-- TODO: Add validation button?? -->
+            <!-- TODO: get list of all titles so they can pick or copy/paste-->
+            <div class="AddActionToProfileForm-edge-wrapper">
+                <div class="AddActionToProfileForm-edge-section AddActionToProfileForm-edge-section-template" style="display: none;">
+                    <button type="button" class="close" onclick="removeSection(this)" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <label class="label-small">Action finished with _______ status</label>
+                    <select class="form-control AddActionToProfileForm-edge-status">
+                        <option selected value="">Choose...</option> <!-- get default one -->
+                        <option value="ACTION_DONE">ACTION_DONE</option>
+                        <option value="NO_ACTION">NO_ACTION</option>
+                        <!-- TODO: make this fetch the API rather hard coded-->
+                    </select>
+
+                    <label class="label-small">Transition to _______ </label>
+                    <input type="text" class="form-control AddActionToProfileForm-edge" placeholder="Action Name Here">
+                </div>
+            </div>
+
+            <div id="AddActionToProfileForm-edges-divider">
+            <button type="button" class="btn btn-outline-secondary" onclick="addAnotherEdgeSection()">Add another edge</button>
+        </div>
+        <!-- images (file select) -->
+        <div class="form-group">
+            <label> Images </label>
+            <p class="form-desc">Please move images to the local folder<p>
+            <!-- TODO: Form validation, prevent duplicate statuses from being picked..-->
+            <!-- TODO: Add validation button?? -->
+            <!-- TODO: get list of all titles so they can pick or copy/paste-->
+            <div class="AddActionToProfileForm-image-wrapper">
+                <div class="AddActionToProfileForm-image-section AddActionToProfileForm-image-section-template" style="display: none;">
+                    <button type="button" class="close" onclick="removeSection(this)" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <label class="label-small">Select Image</label>
+                    <input type="text" class="form-control AddActionToProfileForm-image" readonly>
+                    <button type="button" onclick="selectImage(this)"> Select Image </button>
+                </div>
+            </div>
+
+            <div id="AddActionToProfileForm-edges-divider">
+            <button type="button" class="btn btn-outline-secondary" onclick="addAnotherImageSection()">Add another image</button>
+        </div>
+        <!-- coordinates (if nessessary) -->
+
+        <div class="form-group">
+            <label> Coordinates </label>
+            <p class="form-desc">Depending on the action it will need different amount of coordinates.<p>
+            <!-- TODO: Form validation, prevent duplicate statuses from being picked..-->
+            <!-- TODO: Add validation button?? -->
+            <!-- TODO: get list of all titles so they can pick or copy/paste-->
+            <div class="AddActionToProfileForm-coordinate-wrapper">
+                <div class="AddActionToProfileForm-coordinate-section AddActionToProfileForm-coordinate-section-template" style="display: none;">
+                    <button type="button" class="close" onclick="removeSection(this)" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <label class="label-small">Select coordinates</label>
+                    <input type="number" class="form-control AddActionToProfileForm-coordinate-x" placeholder="x">
+                    <input type="number" class="form-control AddActionToProfileForm-coordinate-y" placeholder="y">
+                    <button type="button" class="btn btn-light btn-sm">Select coordinate</button>
+                </div>
+            </div>
+
+            <div id="AddActionToProfileForm-edges-divider">
+            <button type="button" class="btn btn-outline-secondary" onclick="addAnotherCoordinateSection()">Add another coordinate</button>
+        </div>
+        <!-- pre-delay -->
+
+        <div class="form-group">
+                <label> Pre/Post Delay (MS)</label>
+                <br>
+
+                <label class="label-small">Pre</label>
+                <input type="number" class="form-control AddActionToProfileForm-predelay" placeholder="predelay" value=0> 
+
+                <label class="label-small">Post</label>
+                <input type="number" class="form-control AddActionToProfileForm-postdelay" placeholder="postdelay" value=0>
+        </div>
+        <!-- post-delay -->
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="console.log('hello')"> Add </button>
+    </form>
+</div>
+
+
+
+<!-- requires jquery and eel to be initialized first -->
+<script type="text/javascript" src="/scripts/AddActionToProfileForm.js"></script>

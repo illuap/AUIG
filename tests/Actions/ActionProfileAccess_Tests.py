@@ -13,9 +13,9 @@ class ActionProfileAccess_Tests(unittest.TestCase):
 
     def test_getStartingAction(self):
         apa = ActionProfileAccess()
-        apa.setJsonFile(self.testJsonPath)
+        apa.set_json_file(self.testJsonPath)
 
-        results = apa.getStartingAction()
+        results = apa.get_starting_action()
 
         self.assertEqual(type(results), type(ActionProfileModel()))
         self.assertEqual(results.name, "open_missions")
@@ -25,18 +25,18 @@ class ActionProfileAccess_Tests(unittest.TestCase):
 
     def test_getStartingActionName(self):
         apa = ActionProfileAccess()
-        apa.setJsonFile(self.testJsonPath)
+        apa.set_json_file(self.testJsonPath)
 
-        results = apa.getStartingActionName()
+        results = apa.get_starting_action_name()
 
         self.assertEqual(type(results), type("string"))
         self.assertEqual(results, "open_missions")
 
     def test_getActionFromName_1(self):
         apa = ActionProfileAccess()
-        apa.setJsonFile(self.testJsonPath)
+        apa.set_json_file(self.testJsonPath)
 
-        results = apa.getActionFromName("open_missions")
+        results = apa.get_action_from_name("open_missions")
 
         self.assertEqual(type(results), type(ActionProfileModel()))
         self.assertEqual(results.name, "open_missions")
@@ -46,9 +46,9 @@ class ActionProfileAccess_Tests(unittest.TestCase):
 
     def test_getActionFromName_2(self):
         apa = ActionProfileAccess()
-        apa.setJsonFile(self.testJsonPath)
+        apa.set_json_file(self.testJsonPath)
 
-        results = apa.getActionFromName("dailies")
+        results = apa.get_action_from_name("dailies")
 
         self.assertEqual(type(results), type(ActionProfileModel()))
         self.assertEqual(results.name, "dailies")
@@ -58,8 +58,8 @@ class ActionProfileAccess_Tests(unittest.TestCase):
 
     def test_getActionFromName_NoneExisting(self):
         apa = ActionProfileAccess()
-        apa.setJsonFile(self.testJsonPath)
+        apa.set_json_file(self.testJsonPath)
 
-        results = apa.getActionFromName("random none existing string")
+        results = apa.get_action_from_name("random none existing string")
 
         self.assertIsNone(results)

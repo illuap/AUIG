@@ -1,3 +1,29 @@
 .content-block{
     padding: 10px 5px;
 }
+
+.form-desc{
+    color: gray;
+    font-size: smaller;
+    padding: 0 5px;
+}
+
+.label-small{
+    font-size: smaller;
+}
+.AddActionToProfileForm-edge-section{
+    background-color: blanchedalmond;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.AddActionToProfileForm-coordinate-section{
+    background-color: gainsboro;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.AddActionToProfileForm-image-section{
+    background-color: mistyrose;
+    padding: 5px;
+    margin-bottom: 10px;
+}

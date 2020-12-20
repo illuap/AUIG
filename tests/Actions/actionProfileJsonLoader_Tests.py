@@ -3,7 +3,7 @@ import unittest
 import jsonpickle
 import os
 
-from src.Actions.actionProfileJSONloader import actionProfileJSONloader
+from src.Actions.ActionProfileJSONloader import ActionProfileJSONloader
 
 from src.Actions.ActionProfileModel import ActionProfileModel
 
@@ -12,7 +12,7 @@ class actionProfileJsonLoader_Tests(unittest.TestCase):
 
     def test_constructor_loading_json(self):
         #Arrange/Act
-        APJsonLoader = actionProfileJSONloader(FILEPATH_ORIGINAL_JSON)
+        APJsonLoader = ActionProfileJSONloader(FILEPATH_ORIGINAL_JSON)
 
         #Assert
         self.assertEqual(APJsonLoader.actionProfileFileName, FILEPATH_ORIGINAL_JSON)
@@ -20,7 +20,7 @@ class actionProfileJsonLoader_Tests(unittest.TestCase):
 
     def test_loading_to_py_obj(self):
         # Arrange
-        APJsonLoader = actionProfileJSONloader(FILEPATH_ORIGINAL_JSON)
+        APJsonLoader = ActionProfileJSONloader(FILEPATH_ORIGINAL_JSON)
 
         # Act
         APJsonLoader.loadActionProfileToDic()
@@ -36,7 +36,7 @@ class actionProfileJsonLoader_Tests(unittest.TestCase):
 
         # Arrange'
         self.__setup_clean_test_JSON(fileName)
-        APJsonLoader = actionProfileJSONloader(fileName)
+        APJsonLoader = ActionProfileJSONloader(fileName)
 
         ap = ActionProfileModel(name,
                                 "findnclic",
@@ -60,7 +60,7 @@ class actionProfileJsonLoader_Tests(unittest.TestCase):
 
         # Arrange
         self.__setup_clean_test_JSON(fileName)
-        APJsonLoader = actionProfileJSONloader(fileName)
+        APJsonLoader = ActionProfileJSONloader(fileName)
 
         # Act
         APJsonLoader.deleteActionProfile(name)
@@ -75,7 +75,7 @@ class actionProfileJsonLoader_Tests(unittest.TestCase):
 
         # Arrange
         self.__setup_clean_test_JSON(fileName)
-        APJsonLoader = actionProfileJSONloader(fileName)
+        APJsonLoader = ActionProfileJSONloader(fileName)
 
         # Act
         modifiedAP = APJsonLoader.actionProfilesDic[next(iter(APJsonLoader.actionProfilesDic))]
@@ -94,7 +94,7 @@ class actionProfileJsonLoader_Tests(unittest.TestCase):
 
         # Arrange
         self.__setup_clean_test_JSON(fileName)
-        APJsonLoader = actionProfileJSONloader(fileName)
+        APJsonLoader = ActionProfileJSONloader(fileName)
         
         # Act
         with self.assertRaises(Exception) as context:

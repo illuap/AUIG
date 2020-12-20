@@ -15,14 +15,13 @@ class ActionProfileManager():
 
 
     def setJsonFile(self, filePath):
-        self.actionProfileAccess.setJsonFile(filePath)
+        self.actionProfileAccess.set_json_file(filePath)
     
     def getStartingAction(self):
-        return self.actionProfileAccess.getStartingAction()
+        return self.actionProfileAccess.get_starting_action()
 
     def getActionFromName(self, actionName):
-        return self.actionProfileAccess.getActionFromName(actionName)
-
+        return self.actionProfileAccess.get_action_from_name(actionName)
 
     # TODO: kind of odd using the above functions and these ones from the same class........
     def executeActionProfile(self, action: ActionProfileModel):
@@ -47,7 +46,6 @@ class ActionProfileManager():
 
         return results
 
-
     def executeActionProfile_NoDelays(self, action: ActionProfileModel):
 
         nextAction = ""
@@ -57,4 +55,3 @@ class ActionProfileManager():
             nextAction = Actions.CHECK_AND_CLICK(action)
 
         return nextAction
-    
