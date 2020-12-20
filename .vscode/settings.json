@@ -1,5 +1,8 @@
 {
     "python.linting.enabled": true,
     "python.pythonPath": "C:\\Users\\paul\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
-    "python.linting.pylintArgs": ["--generate-members"]
+    "python.linting.pylintArgs": ["--generate-members"],
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/src"
+    ]
 }

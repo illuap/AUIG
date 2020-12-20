@@ -1,5 +1,6 @@
 import keyboard
 import time
+import json
 
 from src.Actions.ActionProfileManager import ActionProfileManager
 from src.Actions.ActionProfileModel import ActionProfileModel
@@ -25,9 +26,14 @@ class ActionNetwork(object):
         if(not startingAction):
             startingAction = self.APManager.getStartingAction()
         # TODO
+        results = "starting"
         while(not keyboard.is_pressed('`') and results != ""):
             nextActionName = self.APManager.executeActionProfile(action = startingAction)
             if(results != ""):
-                results = self.APManager.getActionFromName(name = nextActionName) # empty string = end
+                results = self.APManager.getActionFromName(actionName = nextActionName) # empty string = end
 
         return
+
+    def getActionsInNetwork(self):
+        return json.dumps(self.APManager.actionProfileAccess.__actionProfileJSONloader.actionProfilesDic, indent=4)
+        #self.APManager

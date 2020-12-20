@@ -8,7 +8,7 @@
             "name": "Python: Main File",
             "type": "python",
             "request": "launch",
-            "program": "C:\\Users\\paul\\Documents\\AUIRG\\main.py",
+            "program": "C:\\Users\\paul\\Documents\\AUIRG\\main_new.py",
             "console": "integratedTerminal"
         }
     ]

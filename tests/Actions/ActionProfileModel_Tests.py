@@ -1,33 +1,30 @@
-
 import unittest
 import jsonpickle
 import json
 import os
 
-from src.Actions.actionProfileJSONloader import actionProfileJSONloader
+from src.Actions.ActionProfileJSONloader import ActionProfileJSONloader
 
 from src.Actions.ActionProfileModel import ActionProfileModel
 
+
 class ActionProfileModel_Tests(unittest.TestCase):
 
-    def dog(self):
-        return
-    # def test_convert_json_to_obj(self):
-    #     someJson = json.dumps({"open_missions": {
-    #                 "name": "open_missions",
-    #                 "actionType": "FIND_AND_CLICK",
-    #                 "edges": { "ACTION_DONE": "dailies",
-    #                             "NO_ACTION" : "dailies" },
-    #                 "images": ["images/test/actionNetwork_test_1.png"],
-    #                 "coordinates": [
-    #                 ],
-    #                 "pre_delay": 10,
-    #                 "post_delay": 20
-    #             }})
+    def test_jsonToObject_success(self):
+        # arrange
+        json_action = '{"name":"dsf","actionType":"FIND_AND_CLICK","edges":{"ACTION_DONE":"sdf"},"images":[' \
+                      '"C:/Users/paul/Pictures/2018 Porsche 911 GT3_ You Magnificent Beast, ' \
+                      'You - 1_30_files/306194_2018_Porsche_911.jpg"],"coordinates":["23","23"],"pre_delay":1,' \
+                      '"post_delay":2} '
+        action: ActionProfileModel = ActionProfileModel.from_json(json_action)
 
-    #     results = ActionProfileModel.json2obj(someJson)
+        self.assertEqual(action.name, "dsf")
+        self.assertEqual(action.pre_delay, 1)
 
-    #     print(results, type(results))
-    #     dog = results.name
-    #     print(dog, type(dog))
-    #     self.assertEqual(results.name, "open_missions")
+    def test_jsonToObject_fail(self):
+        json_action = '{"name":"dsf","actionType":"FIND_AND_CLICK","edges":{"ACTION_DONE":"sdf"}} '
+
+        try:
+            action: ActionProfileModel = ActionProfileModel.from_json(json_action)
+        except:
+            print('success')
