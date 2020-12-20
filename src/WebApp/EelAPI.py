@@ -2,9 +2,10 @@ import eel
 
 import tkinter as tk
 from tkinter import filedialog
+from loguru import logger
 
 from src.Actions.ActionProfileModel import ActionProfileModel
-from src.WebApp.AUIG_WebApp import AUIRG_WebApp
+from src.WebApp.AUIRG_WebApp import AUIRG_WebApp
 from src.Tools.AppCheckerTool import AppCheckerTool
 from src.Tools.ProfileViewer import ProfileViewer
 
@@ -72,4 +73,10 @@ def selectImageTK():
 def addActionToProfilePY(json: str):
     app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
 
-    app.apManager.actionProfileAccess.get_starting_action(ActionProfileModel.from_json(json))
+    try:
+        ap = ActionProfileModel.from_json(json)
+        app.apManager.actionProfileAccess.add_action(ap)
+    except:
+        logger.error("Failed to add/save action....")
+        logger.debug(json)
+        raise

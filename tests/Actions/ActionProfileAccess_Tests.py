@@ -1,4 +1,3 @@
-
 import unittest
 import jsonpickle
 import os
@@ -7,8 +6,8 @@ from src.Actions.ActionProfileAccess import ActionProfileAccess
 
 from src.Actions.ActionProfileModel import ActionProfileModel
 
-class ActionProfileAccess_Tests(unittest.TestCase):
 
+class ActionProfileAccess_Tests(unittest.TestCase):
     testJsonPath = "data/test_actionNetwork_1.json"
 
     def test_getStartingAction(self):

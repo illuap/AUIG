@@ -1,1 +1,46 @@
-{"open_missions": {"name": "open_missions", "actionType": "findnclic", "edges": {"dog": "edge1"}, "images": ["sdfg/sdfgsdfg/dfg.png"], "coordinates": [[10, 200], [300, 400]], "pre_delay": 10, "post_delay": 20}, "dailies": {"name": "dailies", "actionType": "findnclic", "edges": {"dog": "edge1"}, "images": ["sdfg/sdfgsdfg/dfg.png"], "coordinates": [[10, 200], [300, 400]], "pre_delay": 10, "post_delay": 20}}
+{
+    "dailies": {
+        "actionType": "findnclic",
+        "coordinates": [
+            [
+                10,
+                200
+            ],
+            [
+                300,
+                400
+            ]
+        ],
+        "edges": {
+            "dog": "edge1"
+        },
+        "images": [
+            "sdfg/sdfgsdfg/dfg.png"
+        ],
+        "name": "dailies",
+        "post_delay": 20,
+        "pre_delay": 10
+    },
+    "open_missions": {
+        "actionType": "findnclic",
+        "coordinates": [
+            [
+                10,
+                200
+            ],
+            [
+                300,
+                400
+            ]
+        ],
+        "edges": {
+            "dog": "edge1"
+        },
+        "images": [
+            "sdfg/sdfgsdfg/dfg.png"
+        ],
+        "name": "open_missions",
+        "post_delay": 20,
+        "pre_delay": 10
+    }
+}

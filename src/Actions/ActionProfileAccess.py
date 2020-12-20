@@ -26,11 +26,11 @@ class ActionProfileAccess:
         return first_ap_obj
 
     # TEMP
-    def get_starting_action_name(self):
+    def get_starting_action_name(self) -> ActionProfileModel:
         # Default to the first one....`
         return next(iter(self.__actionProfileJSONloader.actionProfilesDic.values()))['name']
 
-    def get_action_from_name(self, name):
+    def get_action_from_name(self, name) -> ActionProfileModel:
         ap_dict = self.__actionProfileJSONloader.actionProfilesDic.get(name, None)
         if ap_dict:
             ap_obj = ActionProfileModel.from_dict(ap_dict)
@@ -39,10 +39,10 @@ class ActionProfileAccess:
             return None
 
     def add_action(self, action: ActionProfileModel):
-        self.__actionProfileJSONloader.addActionProfile(action)
+        self.__actionProfileJSONloader.add_action(action)
 
     def delete_action(self, name: str):
-        self.__actionProfileJSONloader.deleteActionProfile(name)
+        self.__actionProfileJSONloader.delete_action(name)
 
     def edit_action(self, action: ActionProfileModel):
-        self.__actionProfileJSONloader.editActionProfile(action)
+        self.__actionProfileJSONloader.edit_action(action)

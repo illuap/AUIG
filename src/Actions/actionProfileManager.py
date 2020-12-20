@@ -17,10 +17,10 @@ class ActionProfileManager():
     def setJsonFile(self, filePath):
         self.actionProfileAccess.set_json_file(filePath)
     
-    def getStartingAction(self):
+    def getStartingAction(self)-> ActionProfileModel:
         return self.actionProfileAccess.get_starting_action()
 
-    def getActionFromName(self, actionName):
+    def getActionFromName(self, actionName) -> ActionProfileModel:
         return self.actionProfileAccess.get_action_from_name(actionName)
 
     # TODO: kind of odd using the above functions and these ones from the same class........

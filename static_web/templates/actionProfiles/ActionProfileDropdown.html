@@ -19,9 +19,36 @@
 
 <!-- requires jquery and eel to be initialized first -->
 <script>
+    class alertClass{
+        
+        constructor(type, message){
+            this.type = type;
+            this.message = message;
+        }
+        
+        get_bootstrap_alert_class_type(){
+            if(this.type == "success"){
+                return "alert-success";
+            }else if(this.type == "danger"){
+                return "alert-danger";
+            }else{
+                console.error("unsupported alertclass type");
+                return ""
+            }
+        }
+
+        get_alert_html(){
+            var htmlAlert = '<div class="alert '+ this.get_bootstrap_alert_class_type() +' alert-dismissible fade show" role="alert"><strong>'+this.type+'</strong> '+ this.message +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+            return htmlAlert; 
+        }
+
+        show_alert(html_wrapper){
+            html_wrapper.prepend(htmlAlert);
+            html_wrapper.find("alert").first().hide().fadeIn(200).delay(2000).fadeOut(1000, function () { $(this).remove(); });
+        }
+    }
 
     async function SetActionProfile(){
-        var alertObj = { type: 'Danger', alertClass: 'alert-danger', message: null};
         var results = null;
 
         option = $('#actionProfileSelect').find(':selected')[0];
@@ -30,6 +57,7 @@
             console.log("please select a valid profile");
 
             alertObj = { type: 'Danger', alertClass: 'alert-danger', message: "Please select a valid profile."};
+            alertClass(type)
         }else{
             // TODO: callback for success??
             console.log("Starting to update the profile to: " + option.value);
