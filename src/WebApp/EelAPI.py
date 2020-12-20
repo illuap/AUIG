@@ -80,3 +80,12 @@ def addActionToProfilePY(json: str):
         logger.error("Failed to add/save action....")
         logger.debug(json)
         raise
+
+@eel.expose
+def callback_test(input: bool):
+    if input:
+        logger.debug("success")
+        return "success-return"
+    else:
+        logger.debug("fail")
+        return "fail-return"
