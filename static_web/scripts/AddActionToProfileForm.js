@@ -1,20 +1,10 @@
-    //#region Backend Communications
+
+//#region Backend Communications
 
 
-    async function addActionToProfileJS(json){
-        results = await eel.addActionToProfilePY(json)();
-    }
-    
-    function addActionToProfileCallBackJS(error, results){
-        if (error != null){
-            // ERROR
-            //TODO: ERROR MESSAGE
-            console.error(results);
-        }else{
-            // SUCCESS
-            //TODO: SUCCESS
-            
-        }
+    async function addActionToProfileJS(){
+        var json = grabFormData()
+        results = await eel.addActionToProfilePY(json)(addActionToProfileJS_Callback);
     }
 
     //#endregion
@@ -85,7 +75,7 @@
     }
     //#endregion
 
-    //#region UI FUNCTIONS
+    //#region UI FUNCTIONS// This is a repeating function must be done specifically forrent ert sectionar each class
     function addAnotherCoordinateSection(){
         result = $(".AddActionToProfileForm-coordinate-section-template")
                                 .clone()

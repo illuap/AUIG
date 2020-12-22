@@ -9,8 +9,10 @@ from src.WebApp.AUIRG_WebApp import AUIRG_WebApp
 from src.Tools.AppCheckerTool import AppCheckerTool
 from src.Tools.ProfileViewer import ProfileViewer
 
-
 # technically abandoned?
+from src.WebApp.Models.ResultStatus import ResultStatus
+from src.WebApp.Types.ResultCode import ResultCode
+
 
 @eel.expose  # Expose this function to Javascript
 def get_(x):
@@ -48,15 +50,15 @@ def get_all_profiles():
 
 @eel.expose
 def set_profile(profile_name):
-    fileDir = ProfileViewer.GetFileDirForDataFile(profile_name)
+    try:
+        file_dir = ProfileViewer.GetFileDirForDataFile(profile_name)
 
-    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
-    app.apManager.setJsonFile(fileDir)
+        app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+        app.apManager.setJsonFile(file_dir)
 
-    # TODO: success or failure notification
-    # return success
-    # else return error
-    return fileDir
+        return ResultStatus(ResultCode.SUCCESS, "Successfully loaded: " + file_dir).get_js_message()
+    except:
+        return ResultStatus(ResultCode.ERROR, "Failed to set profile to: " + profile_name).get_js_message()
 
 
 @eel.expose
@@ -70,16 +72,20 @@ def selectImageTK():
 
 
 @eel.expose
-def addActionToProfilePY(json: str):
+def addActionToProfilePY(json: str) -> ResultStatus:
     app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
 
     try:
-        ap = ActionProfileModel.from_json(json)
+        ap: ActionProfileModel = ActionProfileModel.from_json(json)
         app.apManager.actionProfileAccess.add_action(ap)
+        return_obj = ResultStatus(ResultCode.SUCCESS, "Successfully added " + ap.name)
+        return return_obj.get_js_message()
     except:
         logger.error("Failed to add/save action....")
         logger.debug(json)
-        raise
+        return_obj = ResultStatus(ResultCode.ERROR, "Something went wrong....")
+        return return_obj.get_js_message()
+
 
 @eel.expose
 def callback_test(input: bool):

@@ -96,18 +96,22 @@
                 <br>
 
                 <label class="label-small">Pre</label>
-                <input type="number" class="form-control AddActionToProfileForm-predelay" placeholder="predelay" value=0> 
+                <input type="number" class="form-control " id="AddActionToProfileForm-predelay" placeholder="predelay" value=0> 
 
                 <label class="label-small">Post</label>
-                <input type="number" class="form-control AddActionToProfileForm-postdelay" placeholder="postdelay" value=0>
+                <input type="number" class="form-control " id="AddActionToProfileForm-postdelay" placeholder="postdelay" value=0>
         </div>
         <!-- post-delay -->
 
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="console.log('hello')"> Add </button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="addActionToProfileJS()"> Add </button>
     </form>
+    <div class="alert-wrapper-addAction"> 
+    </div>
 </div>
 
 
 
 <!-- requires jquery and eel to be initialized first -->
+
+<script type="text/javascript" src="/scripts/common/alert_class.js"></script>
 <script type="text/javascript" src="/scripts/AddActionToProfileForm.js"></script>

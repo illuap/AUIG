@@ -33,7 +33,10 @@ class Eel_API_Tests(unittest.TestCase):
         json_raw = jsonpickle.encode(ap,unpicklable=False)
 
         set_profile(tempFileName)
-        addActionToProfilePY(json_raw)
+        statusCode = addActionToProfilePY(json_raw)
+
+        self.assertEqual(statusCode.Code, ResultCode.SUCCESS)
+
 
         f = open("./data/test_actionNetwork_1.json", "r")
         json_raw = f.read()
