@@ -1,6 +1,45 @@
 
 //#region Backend Communications
 
+    async function countDown(div, seconds){
+        div.text(seconds);
+        var countdown = setInterval(function() {
+            seconds--;
+            div.text(seconds);
+            if (seconds <= 0) clearInterval(countdown);
+        }, 1000); 
+    }
+
+    function setCoordinates(sectionDiv, xVal, yVal){
+        x = sectionDiv.find(".AddActionToProfileForm-coordinate-x");
+        y = sectionDiv.find(".AddActionToProfileForm-coordinate-y");
+
+        x.val(xVal);
+        y.val(yVal);
+    }
+
+    var delayFunc = async function(sectionDiv){
+        
+        return await eel.populateCoordinatesPY()((results) => {
+                populateCoordinatesJS_Callback(results);
+                setCoordinates(sectionDiv, results[2][0], results[2][1]);
+            });
+     };
+
+    function populateCoordinates(button){
+        //trigger count down
+    
+        masterDiv = $(button).parent(".AddActionToProfileForm-coordinate-section");
+        countDownTime = 3;
+        countDown(masterDiv.find(".count-down"), countDownTime);
+
+        // call python
+
+        setTimeout(function() {
+                delayFunc(masterDiv)//setCoordinates(masterDiv, results[0], results[1]));
+            }, countDownTime * 1000 );
+    }
+
 
     async function addActionToProfileJS(){
         var json = grabFormData()

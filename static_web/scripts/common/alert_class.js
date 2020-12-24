@@ -26,6 +26,12 @@ class alertClass{
         html_wrapper.append(this.get_alert_html());
         html_wrapper.find(".alert").first().hide().fadeIn(200).delay(2000).fadeOut(1000, function () { $(this).remove(); });
     }
+    popup_alert(){
+        if(this.type.toLowerCase() != "success"){
+            console.log(this.type);
+            alert(this.type+":" + this.message)
+        }
+    }
 }
 
 // This is a repeating function must be done specifically for each different alert section
@@ -38,5 +44,11 @@ function SetActionProfile_Callback(resultStatus){
 function addActionToProfileJS_Callback(resultStatus){
     alert_obj = new alertClass(resultStatus[0], resultStatus[1]);
     alert_obj.show_alert($(".alert-wrapper-addAction"));
+    delete alert_obj;
+}
+
+function populateCoordinatesJS_Callback(resultStatus){
+    alert_obj = new alertClass(resultStatus[0], resultStatus[1]);
+    alert_obj.popup_alert();
     delete alert_obj;
 }

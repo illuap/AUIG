@@ -5,6 +5,7 @@ from tkinter import filedialog
 from loguru import logger
 
 from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Tools.CursorRelativePosition import CursorRelativePosition
 from src.WebApp.AUIRG_WebApp import AUIRG_WebApp
 from src.Tools.AppCheckerTool import AppCheckerTool
 from src.Tools.ProfileViewer import ProfileViewer
@@ -95,3 +96,14 @@ def callback_test(input: bool):
     else:
         logger.debug("fail")
         return "fail-return"
+
+
+@eel.expose
+def populateCoordinatesPY():
+    try:
+        cords = CursorRelativePosition.get_relative_cursor_position()
+        # make sure the above function fails quickly.
+        return ResultStatus(ResultCode.SUCCESS, "(" + str(cords[0]) + "," + str(cords[1]) + ")", cords).get_js_message()
+    except:
+        return ResultStatus(ResultCode.ERROR,
+                            "SOMETHING WENT WRONG GETTING THE COORDINATES FROM THE MOUSE").get_js_message()
