@@ -6,6 +6,7 @@ from loguru import logger
 
 from src.Actions.ActionProfileModel import ActionProfileModel
 from src.Tools.CursorRelativePosition import CursorRelativePosition
+from src.Validation.ActionValidation import ActionValidation
 from src.WebApp.AUIRG_WebApp import AUIRG_WebApp
 from src.Tools.AppCheckerTool import AppCheckerTool
 from src.Tools.ProfileViewer import ProfileViewer
@@ -78,7 +79,11 @@ def addActionToProfilePY(json: str) -> ResultStatus:
 
     try:
         ap: ActionProfileModel = ActionProfileModel.from_json(json)
-        app.apManager.actionProfileAccess.add_action(ap)
+
+        valid_ap = ActionValidation.validate_new_action(ap)
+
+        app.apManager.actionProfileAccess.add_action(valid_ap)
+
         return_obj = ResultStatus(ResultCode.SUCCESS, "Successfully added " + ap.name)
         return return_obj.get_js_message()
     except:
