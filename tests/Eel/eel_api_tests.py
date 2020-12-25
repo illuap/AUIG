@@ -24,19 +24,18 @@ class Eel_API_Tests(unittest.TestCase):
         ap = ActionProfileModel(name,
                                 "findnclic",
                                 {"dog": "edge1"},
-                                ["sdfg/sdfgsdfg/dfg.png"],
+                                ["C:/Users/paul/Pictures/1gc3i2.jpg"],
                                 [(10, 200), (300, 400)],
                                 10,
                                 20)
 
         print(ap)
-        json_raw = jsonpickle.encode(ap,unpicklable=False)
+        json_raw = jsonpickle.encode(ap, unpicklable=False)
 
         set_profile(tempFileName)
-        statusCode = addActionToProfilePY(json_raw)
+        result_status = addActionToProfilePY(json_raw)
 
-        self.assertEqual(statusCode.Code, ResultCode.SUCCESS)
-
+        self.assertEqual(ResultCode.SUCCESS, result_status[0])
 
         f = open("./data/test_actionNetwork_1.json", "r")
         json_raw = f.read()
@@ -48,6 +47,7 @@ class Eel_API_Tests(unittest.TestCase):
         self.assertIsNotNone(results)
         self.assertEqual(results.name, name)
 
+        os.remove("./images/1gc3i2.jpg")
 
     @classmethod
     def tearDownClass(cls):

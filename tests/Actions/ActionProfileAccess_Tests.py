@@ -71,3 +71,7 @@ class ActionProfileAccess_Tests(unittest.TestCase):
 
         self.assertEqual(len(results), 2)
         self.assertIn("dailies", results)
+
+    def test_get_empty_json(self):
+        apa = ActionProfileAccess()
+        apa.set_json_file("data/empty.json")

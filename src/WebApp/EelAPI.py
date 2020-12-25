@@ -86,21 +86,12 @@ def addActionToProfilePY(json: str) -> ResultStatus:
 
         return_obj = ResultStatus(ResultCode.SUCCESS, "Successfully added " + ap.name)
         return return_obj.get_js_message()
-    except:
+    except Exception as e:
+        logger.error(e)
         logger.error("Failed to add/save action....")
         logger.debug(json)
         return_obj = ResultStatus(ResultCode.ERROR, "Something went wrong....")
         return return_obj.get_js_message()
-
-
-@eel.expose
-def callback_test(input: bool):
-    if input:
-        logger.debug("success")
-        return "success-return"
-    else:
-        logger.debug("fail")
-        return "fail-return"
 
 
 @eel.expose

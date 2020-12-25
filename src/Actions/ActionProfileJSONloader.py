@@ -1,6 +1,9 @@
 import json
+import os
+from json import JSONDecodeError
 
 import jsonpickle
+from loguru import logger
 
 from src.Actions.ActionProfileModel import ActionProfileModel
 
@@ -22,10 +25,20 @@ class ActionProfileJSONloader(object):
 
     def loadActionProfileToDic(self):
         """ Givent the json list of actionProfiles load the profile + the action """
-        with open(self.actionProfileFileName, 'r') as f:
-            self.actionProfilesDic = jsonpickle.decode(f.read())
-        print("Opening: ")
-        print(self.actionProfilesDic)
+
+        try:
+            with open(self.actionProfileFileName, 'r') as f:
+                self.actionProfilesDic = jsonpickle.decode(f.read())
+                logger.info("Opening: ")
+                logger.info(self.actionProfilesDic)
+        except EOFError:
+            self.actionProfilesDic = dict()
+            logger.info("Empty File, Creating empty dictionary")
+        except JSONDecodeError as e:
+            logger.error(e.msg)
+            logger.error("The file must have at least {}. Empty files will not work!")
+            raise e
+
 
     def writeActionProfileDic(self):
         with open(self.actionProfileFileName, 'w') as f:

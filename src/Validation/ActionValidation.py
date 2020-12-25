@@ -21,6 +21,8 @@ class ActionValidation:
         if ActionValidation.__is_internal_img_dir(img_dir):
             print("do something here")
             return img_dir
+        elif not os.path.exists(img_dir):
+            raise FileNotFoundError
         else:
             new_img_dir = ActionValidation.__copy_img_to_internal_folder(img_dir)
             return new_img_dir
@@ -47,6 +49,7 @@ class ActionValidation:
         while os.path.exists(new_dir):
             file, ext = os.path.splitext(filename)
             new_dir = "{0}{1}_{2}{3}".format(sub_dir, file, str(i), ext)
+            i = i+1
 
         shutil.copyfile(img_dir, new_dir)
 
