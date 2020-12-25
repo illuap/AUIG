@@ -59,7 +59,8 @@ def set_profile(profile_name):
         app.apManager.setJsonFile(file_dir)
 
         return ResultStatus(ResultCode.SUCCESS, "Successfully loaded: " + file_dir).get_js_message()
-    except:
+    except Exception as e:
+        logger.error(e)
         return ResultStatus(ResultCode.ERROR, "Failed to set profile to: " + profile_name).get_js_message()
 
 
@@ -100,7 +101,8 @@ def populateCoordinatesPY():
         cords = CursorRelativePosition.get_relative_cursor_position()
         # make sure the above function fails quickly.
         return ResultStatus(ResultCode.SUCCESS, "(" + str(cords[0]) + "," + str(cords[1]) + ")", cords).get_js_message()
-    except:
+    except Exception as e:
+        logger.error(e)
         return ResultStatus(ResultCode.ERROR,
                             "SOMETHING WENT WRONG GETTING THE COORDINATES FROM THE MOUSE").get_js_message()
 
@@ -110,5 +112,6 @@ def getAllEdgesPY():
     try:
         app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
         return ResultStatus(ResultCode.SUCCESS, "", app.apManager.actionProfileAccess.get_all_edges()).get_js_message()
-    except:
+    except Exception as e:
+        logger.error(e)
         return ResultStatus(ResultCode.ERROR, "Something went wrong getting the messages").get_js_message()
