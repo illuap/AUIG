@@ -1,1 +1,15 @@
-{}
+{
+    "start": {
+        "actionType": "FIND_AND_CLICK",
+        "coordinates": [],
+        "edges": {
+            "NO_ACTION": "start"
+        },
+        "images": [
+            "./images/Nox_JcZk41cfub.png"
+        ],
+        "name": "start",
+        "post_delay": "1",
+        "pre_delay": "1"
+    }
+}

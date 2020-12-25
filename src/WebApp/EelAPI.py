@@ -41,8 +41,12 @@ def focus_nox_window():
 
 @eel.expose
 def start_action_network():
-    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
-    app.aNetwork.traverseNetwork()
+    try:
+        app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+        app.aNetwork.traverseNetwork()
+    except Exception as e:
+        logger.error(e)
+
 
 
 @eel.expose

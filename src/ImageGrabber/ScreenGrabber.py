@@ -80,7 +80,7 @@ class ScreenGrabberWin32(ScreenGrabber):
         # https://stackoverflow.com/questions/3586046/fastest-way-to-take-a-screenshot-with-python-on-windows
 
         if (config['FOCUS_ON_EVERY_ACTION'] == 1):
-            win32gui.SetForegroundWindow(self.hwnd)
+            self.setWindowToForeground()
 
         rect = win32gui.GetWindowRect(
             self.hwnd)  # Maybe take this out to optimize performance at the cost of not being able to resize while the app is running
