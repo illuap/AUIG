@@ -47,8 +47,8 @@ function addActionToProfileJS_Callback(resultStatus){
     delete alert_obj;
 }
 
-function populateCoordinatesJS_Callback(resultStatus){
+function generticAlertIfError(resultStatus){
     alert_obj = new alertClass(resultStatus[0], resultStatus[1]);
     alert_obj.popup_alert();
-    delete alert_obj;
+    delete alert_obj; 
 }

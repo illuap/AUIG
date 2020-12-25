@@ -112,3 +112,12 @@ def populateCoordinatesPY():
     except:
         return ResultStatus(ResultCode.ERROR,
                             "SOMETHING WENT WRONG GETTING THE COORDINATES FROM THE MOUSE").get_js_message()
+
+
+@eel.expose
+def getAllEdgesPY():
+    try:
+        app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+        return ResultStatus(ResultCode.SUCCESS, "", app.apManager.actionProfileAccess.get_all_edges()).get_js_message()
+    except:
+        return ResultStatus(ResultCode.ERROR, "Something went wrong getting the messages").get_js_message()

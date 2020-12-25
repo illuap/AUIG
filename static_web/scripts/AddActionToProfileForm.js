@@ -1,5 +1,30 @@
 
 //#region Backend Communications
+        
+    async function setAvailableEdges(){
+        edges = []
+        await eel.getAllEdgesPY()((results) =>
+            {
+                console.log(results);
+                generticAlertIfError(results);
+                edges = results[2] ;
+                
+                $(".AddActionToProfileForm-edge-selecter").empty();
+                edges.forEach(edge => {
+                    console.log(edge);
+                    $(".AddActionToProfileForm-edge-selecter")
+                        .append('<button type="button" onclick="updateEdgeLabel(this, \''+ edge +'\')">'+
+                                        edge+
+                                   '</button>');
+                });
+                
+            }
+        )
+    }
+
+    function updateEdgeLabel(div, edgeName){
+        $(div.parentNode).parent(".AddActionToProfileForm-edge-section").find(".AddActionToProfileForm-edge").val(edgeName)
+    }
 
     async function countDown(div, seconds){
         div.text(seconds);
@@ -21,7 +46,7 @@
     var delayFunc = async function(sectionDiv){
         
         return await eel.populateCoordinatesPY()((results) => {
-                populateCoordinatesJS_Callback(results);
+                generticAlertIfError(results);
                 setCoordinates(sectionDiv, results[2][0], results[2][1]);
             });
      };
@@ -135,6 +160,7 @@
                                 .removeClass("AddActionToProfileForm-edge-section-template")
                                 .appendTo(".AddActionToProfileForm-edge-wrapper")
                                 .fadeIn();
+        setAvailableEdges();
     }
     function removeSection(section){
         $(section.parentNode).fadeOut();

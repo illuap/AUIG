@@ -62,3 +62,12 @@ class ActionProfileAccess_Tests(unittest.TestCase):
         results = apa.get_action_from_name("random none existing string")
 
         self.assertIsNone(results)
+
+    def test_get_all_edges(self):
+        apa = ActionProfileAccess()
+        apa.set_json_file(self.testJsonPath)
+
+        results = apa.get_all_edges()
+
+        self.assertEqual(len(results), 2)
+        self.assertIn("dailies", results)

@@ -46,3 +46,9 @@ class ActionProfileAccess:
 
     def edit_action(self, action: ActionProfileModel):
         self.__actionProfileJSONloader.edit_action(action)
+
+    def get_all_edges(self):
+        edges = []
+        for val in self.__actionProfileJSONloader.actionProfilesDic.keys():
+            edges.append(val)
+        return edges
