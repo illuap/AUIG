@@ -1,8 +1,23 @@
 {
+    "back": {
+        "actionType": "FIND_AND_CLICK",
+        "coordinates": [],
+        "edges": {
+            "ACTION_DONE": "start",
+            "NO_ACTION": "back"
+        },
+        "images": [
+            "./images/Nox_gndIxGETXi.png"
+        ],
+        "name": "back",
+        "post_delay": "2",
+        "pre_delay": "2"
+    },
     "start": {
         "actionType": "FIND_AND_CLICK",
         "coordinates": [],
         "edges": {
+            "ACTION_DONE" : "back",
             "NO_ACTION": "start"
         },
         "images": [

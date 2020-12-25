@@ -13,9 +13,12 @@ class ActionValidation_tests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        os.remove(cls.expected_img)
-        os.remove(cls.expected_img_1)
-        os.remove(cls.expected_img_2)
+        try:
+            os.remove(cls.expected_img)
+            os.remove(cls.expected_img_1)
+            os.remove(cls.expected_img_2)
+        except:
+            print()
 
     def test_validate_new_action(self):
         test_sample = self.SAMPLE1

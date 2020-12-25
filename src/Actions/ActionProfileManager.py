@@ -1,3 +1,5 @@
+from typing import Optional
+
 import eel
 import jsonpickle
 import keyboard
@@ -10,7 +12,7 @@ from src.Actions.ActionProfileAccess import ActionProfileAccess
 from src.Actions.Actions import Actions
 
 
-class ActionProfileManager():
+class ActionProfileManager:
     actionProfileAccess = None
 
     def __init__(self):
@@ -25,16 +27,17 @@ class ActionProfileManager():
     def getActionFromName(self, actionName) -> ActionProfileModel:
         return self.actionProfileAccess.get_action_from_name(actionName)
 
-    # TODO: kind of odd using the above functions and these ones from the same class........
-    def executeActionProfile(self, action: ActionProfileModel):
+    # TODO: kind of odd using the above functions and these ones from the same class........ (MIGHT WANA BREAK APART)
+    def executeActionProfile(self, action: ActionProfileModel) -> Optional[ActionProfileModel]:
         """Takes an action profile model and decides how to perform given action
         
-        :return: return the name of the next node that should be executed
+        :return: return the next node that should be executed
         """
         # PRE-DELAY
         for i in range(0, int(action.pre_delay) * 10):
             if keyboard.is_pressed('`'):
-                return ""
+                logger.info("Keyboard Exit")
+                return None
             eel.sleep(0.1)
 
         logger.debug("finished pre-delay")
@@ -43,18 +46,24 @@ class ActionProfileManager():
         # POST-DELAY
         for i in range(0, int(action.post_delay) * 10):
             if keyboard.is_pressed('`'):
-                return ""
+                logger.info("Keyboard Exit")
+                return None
             eel.sleep(0.1)
 
         logger.debug("finished post-delay")
         return results
 
-    def executeActionProfile_NoDelays(self, action: ActionProfileModel):
 
-        nextAction = ""
-        if (action.actionType == "FIND_AND_CLICK"):
-            nextAction = Actions.FIND_AND_CLICK(action)
-        elif (action._actionType == "CHECK_AND_CLICK"):
-            nextAction = Actions.CHECK_AND_CLICK(action)
+    # TODO MIGHT WANA BREAK APART
+    def executeActionProfile_NoDelays(self, action: ActionProfileModel) -> Optional[ActionProfileModel]:
+        logger.info("Executing " + action.name + " - " + action.actionType)
+        next_action_name = None
+        if action.actionType == "FIND_AND_CLICK":
+            next_action_name = Actions.FIND_AND_CLICK(action)
+        elif action.actionType == "CHECK_AND_CLICK":
+            next_action_name = Actions.CHECK_AND_CLICK(action)
 
-        return nextAction
+        if next_action_name is None:
+            return None
+
+        return self.getActionFromName(next_action_name)

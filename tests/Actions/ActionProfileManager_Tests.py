@@ -2,6 +2,8 @@ import unittest
 import jsonpickle
 import os
 
+from loguru import logger
+
 from src.Actions.ActionProfileManager import ActionProfileManager
 
 from src.Actions.ActionProfileModel import ActionProfileModel
@@ -63,8 +65,8 @@ class ActionProfileManager_Tests(unittest.TestCase):
 
         results = apa.executeActionProfile_NoDelays(action)
 
-        print(results)
-        self.assertEqual(results, "open_missions")
+        logger.debug(results)
+        self.assertEqual(results.name, "open_missions")
 
     def test_executeActionProfile(self):
         return # TODO

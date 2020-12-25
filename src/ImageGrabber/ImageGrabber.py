@@ -1,4 +1,5 @@
 import cv2
+from loguru import logger
 
 from src.ImageGrabber.ScreenGrabber import ScreenGrabberWin32
 
@@ -33,7 +34,7 @@ class ImageGrabber():
 
     def grabImageFromFile(self, fileName):
         """ Using CV2 to get an image """
-        print(fileName)
+        logger.info(fileName)
         image = cv2.imread(fileName, cv2.IMREAD_COLOR)
         return image
 

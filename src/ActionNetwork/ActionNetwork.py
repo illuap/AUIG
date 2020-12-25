@@ -28,17 +28,19 @@ class ActionNetwork(object):
         if not starting_action:
             logger.info("Getting starting action!")
             starting_action = self.APManager.getStartingAction()
-        # TODO
-        results = starting_action
-        while not keyboard.is_pressed('`') and results != "":
 
-            logger.info("Starting action: " + results.name)
-            next_action_name = self.APManager.executeActionProfile(action=results)
-            if results != "":
-                results = self.APManager.getActionFromName(actionName=next_action_name)  # empty string = end
-            logger.info("Queuing up next action: " + results.name)
+        next_action: ActionProfileModel = starting_action
+        while not keyboard.is_pressed('`') and next_action is not None: #TODO get rid of the multiple keyboard press checks
 
-        logger.info("Ending network Traverse!")
+            logger.info("Starting action: " + next_action.name)
+            next_action = self.APManager.executeActionProfile(action=next_action)
+            if next_action is None:
+                logger.info("Ending Traversal Early!")
+                break
+
+            logger.info("Queuing up next action: " + next_action.name)
+
+        logger.info("Ended network Traverse!")
 
         return
 

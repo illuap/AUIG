@@ -46,6 +46,8 @@ def start_action_network():
         app.aNetwork.traverseNetwork()
     except Exception as e:
         logger.error(e)
+        logger.exception(e)
+        logger.trace(e)
 
 
 

@@ -1,4 +1,7 @@
 from abc import ABC
+
+from loguru import logger
+
 from configmanager import config
 import win32gui, win32com.client
 import win32ui
@@ -40,20 +43,18 @@ class ScreenGrabberWin32(ScreenGrabber):
 
         # TODO: Do a check for duplicate names/ windows with the same name
         try:
-            print("- Trying to find window name: " + winName)
             # this finds a window with a SIMILAR or EXACT name
             self.hwnd = self.findWindowHWD(winName)
-            print("- Is window visible: " + str(self.isWindowVisible()))
 
             if self.hwnd == 0:
-                print("[ERROR] Could not find " + winName)
-                exit()
+                logger.error("[ERROR] Could not find " + winName)
             # self.setWindowToForeground()
 
         except Exception as ex:
-            print('[ERROR] calling win32gui.FindWindow ' + str(ex))
-            print(' - TRY RUNNING IN ADMIN')
-            raise
+            logger.trace(ex)
+            logger.error('[ERROR] calling win32gui.FindWindow ' + str(ex))
+            logger.error(' - TRY RUNNING IN ADMIN')
+            raise ex
 
     def findWindowHWD(self, windowName):
         return win32gui.FindWindow(None, windowName)
