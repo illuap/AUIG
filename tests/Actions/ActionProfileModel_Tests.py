@@ -1,11 +1,6 @@
 import unittest
-import jsonpickle
-import json
-import os
 
-from src.Actions.ActionProfileJSONloader import ActionProfileJSONloader
-
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 
 
 class ActionProfileModel_Tests(unittest.TestCase):

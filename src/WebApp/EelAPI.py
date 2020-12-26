@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import filedialog
 from loguru import logger
 
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 from src.Tools.CursorRelativePosition import CursorRelativePosition
 from src.Validation.ActionValidation import ActionValidation
 from src.WebApp.AUIRG_WebApp import AUIRG_WebApp

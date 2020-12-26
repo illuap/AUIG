@@ -1,11 +1,10 @@
 import keyboard
-import time
 import json
 
 from loguru import logger
 
 from src.Actions.ActionProfileManager import ActionProfileManager
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 
 
 class ActionNetwork(object):

@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 from src.Validation.ActionValidation import ActionValidation
 
 

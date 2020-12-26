@@ -1,12 +1,10 @@
 import unittest
-import jsonpickle
-import os
 
 from loguru import logger
 
 from src.Actions.ActionProfileManager import ActionProfileManager
 
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 
 class ActionProfileManager_Tests(unittest.TestCase):
 

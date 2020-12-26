@@ -4,7 +4,7 @@ import os
 
 from src.Actions.ActionProfileJSONloader import ActionProfileJSONloader
 
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 
 FILEPATH_ORIGINAL_JSON = "./data/test_actionNetwork_2.json"
 

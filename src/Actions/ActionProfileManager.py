@@ -1,13 +1,11 @@
 from typing import Optional
 
 import eel
-import jsonpickle
 import keyboard
-import time
 
 from loguru import logger
 
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 from src.Actions.ActionProfileAccess import ActionProfileAccess
 from src.Actions.Actions import Actions
 

@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 
 
 class ActionValidation:

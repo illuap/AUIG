@@ -1,10 +1,8 @@
 import unittest
-import jsonpickle
-import os
 
 from src.Actions.ActionProfileAccess import ActionProfileAccess
 
-from src.Actions.ActionProfileModel import ActionProfileModel
+from src.Actions.Models.ActionProfileModel import ActionProfileModel
 
 
 class ActionProfileAccess_Tests(unittest.TestCase):
