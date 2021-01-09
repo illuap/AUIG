@@ -44,6 +44,9 @@ class ActionProfileJSONloader(object):
             f.write(jsonpickle.encode(self.actionProfilesDic, unpicklable=False))
 
     def get_action(self, name: str) -> ActionProfileModel:
+        if name == "":
+            logger.warning("Invalid node name of empty string is passed around")
+            return None
         action = self.actionProfilesDic[name]
         return ActionProfileModel.from_dict(action)
 

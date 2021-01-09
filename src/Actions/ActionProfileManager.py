@@ -20,7 +20,13 @@ class ActionProfileManager:
         self.actionProfileAccess.set_json_file(filePath)
 
     def getStartingAction(self) -> ActionProfileModel:
-        return self.actionProfileAccess.get_starting_action()
+        results = self.actionProfileAccess.get_starting_action()
+        return results
+
+    def setStartingActionByName(self, name) -> bool:
+        if name not in self.actionProfileAccess.get_all_edges():
+            raise Exception("Starting Action not found")
+        return self.actionProfileAccess.set_starting_action(name)
 
     def getActionFromName(self, actionName) -> ActionProfileModel:
         return self.actionProfileAccess.get_action_from_name(actionName)

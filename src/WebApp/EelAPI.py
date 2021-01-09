@@ -1,3 +1,5 @@
+from typing import List
+
 import eel
 
 import tkinter as tk
@@ -48,7 +50,6 @@ def start_action_network():
         logger.error(e)
         logger.exception(e)
         logger.trace(e)
-
 
 
 @eel.expose
@@ -113,7 +114,7 @@ def populateCoordinatesPY():
                             "SOMETHING WENT WRONG GETTING THE COORDINATES FROM THE MOUSE").get_js_message()
 
 
-@eel.expose
+@eel.expose # Using Result Status as method to send data.
 def getAllEdgesPY():
     try:
         app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
@@ -121,3 +122,24 @@ def getAllEdgesPY():
     except Exception as e:
         logger.error(e)
         return ResultStatus(ResultCode.ERROR, "Something went wrong getting the messages").get_js_message()
+
+
+@eel.expose # Using simple list result to get actions
+def getAllActions() -> List[str]:
+    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+    actions = app.apManager.actionProfileAccess.get_all_edges()
+    return actions
+
+
+@eel.expose
+def set_startingAction(edge_name) -> None:
+    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+    actionProfileDir = app.apManager.getStartingAction()
+
+
+@eel.expose
+def get_startingAction() -> str:
+    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+    startingAction = app.apManager.getStartingAction()
+
+    return startingAction.name
