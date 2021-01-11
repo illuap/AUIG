@@ -34,13 +34,15 @@
         }else{
             console.log("Starting to update the profile to: " + option.value);
             results = await eel.set_profile(option.value)(SetActionProfile_Callback); //TODO maybe a callback?
+
+            LoadAllStartingActions(); //Added on to update.?
         }
     }
 
     async function LoadAllProfiles(){
 
         results = await eel.get_all_profiles()()
-
+        //todo add load current profile
         for(var i in results){
             $('#actionProfileSelect').append('<option value="' + results[i] +'">'+ results[i] +'</option>');
         }

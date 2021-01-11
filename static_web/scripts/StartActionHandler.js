@@ -16,6 +16,7 @@
         }
     }
 
+    // Possibly expose? tp update everytime the profile changes
     async function LoadAllStartingActions(){
 
         results = await eel.getAllActions()()

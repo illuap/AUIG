@@ -43,7 +43,7 @@ function SetActionProfile_Callback(resultStatus){
 
 function SetStartingAction_Callback(resultStatus){
     alert_obj = new alertClass(resultStatus[0], resultStatus[1]);
-    alert_obj.show_alert($("#startingAction-section").find(".alert-wrapper"));
+    alert_obj.show_alert($("#startingAction-section").find(".alert-section"));
     delete alert_obj;
 }
 function addActionToProfileJS_Callback(resultStatus){

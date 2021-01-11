@@ -1,0 +1,44 @@
+{
+    "back": {
+        "actionType": "FIND_AND_CLICK",
+        "coordinates": [],
+        "edges": {
+            "ACTION_DONE": "back",
+            "NO_ACTION": "back"
+        },
+        "images": [
+            "./images/Nox_UwlLxn8PVN.png"
+        ],
+        "name": "back",
+        "post_delay": "10",
+        "pre_delay": "10"
+    },
+    "friendship_points": {
+        "actionType": "FIND_AND_CLICK",
+        "coordinates": [],
+        "edges": {
+            "ACTION_DONE": "back",
+            "NO_ACTION": "friendship_points"
+        },
+        "images": [
+            "./images/Nox_i7I92mrak0.png"
+        ],
+        "name": "friendship_points",
+        "post_delay": "10",
+        "pre_delay": "10"
+    },
+    "open_friends": {
+        "actionType": "FIND_AND_CLICK",
+        "coordinates": [],
+        "edges": {
+            "ACTION_DONE": "friendship_points",
+            "NO_ACTION": "open_friends"
+        },
+        "images": [
+            "./images/Nox_Q5SogAhG00.png"
+        ],
+        "name": "open_friends",
+        "post_delay": "0",
+        "pre_delay": "0"
+    }
+}
