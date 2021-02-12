@@ -38,21 +38,21 @@ class ActionProfileManager:
         :return: return the next node that should be executed
         """
         # PRE-DELAY
-        for i in range(0, int(action.pre_delay) * 10):
+        for i in range(0, int(action.pre_delay)):
             if keyboard.is_pressed('`'):
                 logger.info("Keyboard Exit")
                 return None
-            eel.sleep(0.1)
+            eel.sleep(0.001)
 
         logger.debug("finished pre-delay")
         results = self.executeActionProfile_NoDelays(action)
 
         # POST-DELAY
-        for i in range(0, int(action.post_delay) * 10):
+        for i in range(0, int(action.post_delay)):
             if keyboard.is_pressed('`'):
                 logger.info("Keyboard Exit")
                 return None
-            eel.sleep(0.1)
+            eel.sleep(0.001)
 
         logger.debug("finished post-delay")
         return results

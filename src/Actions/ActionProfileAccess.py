@@ -47,6 +47,9 @@ class ActionProfileAccess:
         else:
             return None
 
+    def get_current_actionProfile_name(self) -> str:
+        return self.__actionProfileJSONloader.actionProfileFileName
+
     def add_action(self, action: ActionProfileModel):
         self.__actionProfileJSONloader.add_action(action)
 

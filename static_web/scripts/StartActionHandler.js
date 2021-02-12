@@ -24,7 +24,8 @@
 
         
         // TODO update the starting action.....
-        $('#startActionSelect').find('selected').remove()
+        $('#startActionSelect').find('selected').remove();
+        $('#startActionSelect').empty();
         for(var i in results){ 
             if(results[i] == startingAction){
                 $('#startActionSelect').append('<option selected value="' + results[i] +'">'+ results[i] +'</option>');

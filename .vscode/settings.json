@@ -4,5 +4,8 @@
     "python.linting.pylintArgs": ["--generate-members"],
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}/src"
+    ],
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src"
     ]
 }

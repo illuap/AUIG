@@ -143,3 +143,11 @@ def get_startingAction() -> str:
     startingAction = app.apManager.getStartingAction()
 
     return startingAction.name
+
+@eel.expose
+def get_current_action_profile_py() -> str:
+
+    app: AUIRG_WebApp = AUIRG_WebApp.get_instance()
+
+    return app.apManager.actionProfileAccess.get_current_actionProfile_name()
+

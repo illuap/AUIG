@@ -5,7 +5,7 @@ import os
 class ProfileViewer():
 
 
-    def GetAllProfiles():
+    def GetAllProfiles(self):
         f = os.listdir("./data")
 
         return f
